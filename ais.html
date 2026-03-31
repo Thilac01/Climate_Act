@@ -117,24 +117,34 @@
             font-weight: 600;
         }
 
-        /* Rule 6: Feedback panel styling */
-        .feedback-panel {
-            background: var(--surface);
-            border-radius: var(--radius-xl);
-            padding: 2rem;
-            box-shadow: var(--shadow-lg);
-            text-align: center;
-            position: sticky;
-            bottom: 20px;
-            margin-top: var(--space-xl);
-            transition: all 0.5s ease;
-            border: 2px solid #e0e0e0;
-        }
+        /* Rule 6: Feedback panel styling - Compact Sidebar Version */
+.feedback-panel {
+    background: var(--surface);
+    border-radius: var(--radius-xl);
+    
+    /* Make it small and compact */
+    padding: 1rem;
+    width: 240px; 
+    text-align: center;
+    
+    /* Fix it to the side */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; /* Ensures it stays above other content */
+    
+    box-shadow: var(--shadow-lg);
+    transition: all 0.5s ease;
+    border: 2px solid #e0e0e0;
+    
+    /* Remove margin-top since it's now floating */
+    margin-top: 0;
+}
 
-        .feedback-panel.low-impact { border-color: #ef5350; }
-        .feedback-panel.medium-impact { border-color: #FF9800; }
-        .feedback-panel.high-impact { border-color: #4CAF50; }
-
+/* Impact border colors remain the same */
+.feedback-panel.low-impact { border-color: #ef5350; }
+.feedback-panel.medium-impact { border-color: #FF9800; }
+.feedback-panel.high-impact { border-color: #4CAF50; }
         .score-display {
             font-size: 3rem;
             font-weight: 800;
