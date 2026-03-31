@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--
+    Page Editor Report - Student 2 (Maria Garcia)
+    ClimAct: Climate Action Website | SDG 13
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page Editor Report for Student 2 - Maria Garcia. Describes contributions to the ClimAct website.">
+    <title>ClimAct | Page Editor - Maria Garcia (ST2)</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .editor-hero { text-align: center; padding: 2rem 1.5rem; background: linear-gradient(135deg, #FF9800, #FFB74D); border-radius: var(--radius-xl); margin-bottom: var(--space-2xl); color: #fff; }
+        .editor-hero h1 { color: #fff; }
+        .editor-hero p { color: rgba(255,255,255,0.9); }
+        .editor-nav { background: var(--surface); border-radius: var(--radius-md); padding: 1.2rem; margin-bottom: var(--space-xl); box-shadow: var(--shadow-sm); }
+        .editor-nav ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .editor-nav ul li a { font-size: 0.85rem; color: var(--primary); padding: 0.4rem 0.8rem; display: block; border-radius: var(--radius-sm); transition: background 0.2s; border: 1px solid var(--primary-light); }
+        .editor-nav ul li a:hover { background: #e8f5e9; }
+        .page-report { background: var(--surface); border-radius: var(--radius-lg); padding: 2rem; margin-bottom: var(--space-xl); box-shadow: var(--shadow-md); border-left: 4px solid #FF9800; }
+        .page-report h2 { margin-bottom: 0.8rem; }
+        .page-report h3 { font-size: 1rem; margin-top: 1rem; margin-bottom: 0.5rem; color: var(--primary-dark); }
+        .page-report p { font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .page-link { display: inline-block; margin-top: 0.5rem; padding: 0.4rem 1rem; background: #FF9800; color: #fff; border-radius: var(--radius-sm); font-size: 0.85rem; text-decoration: none; }
+        .page-link:hover { background: #F57C00; color: #fff; }
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <svg width="45" height="45" viewBox="0 0 45 45" aria-label="ClimAct Logo"><circle cx="22.5" cy="22.5" r="22" fill="#FF9800"/><text x="22.5" y="28" text-anchor="middle" fill="#1B5E20" font-size="20" font-weight="bold">🌍</text></svg>
+                <div><p class="site-title">ClimAct</p><p class="site-tagline">SDG 13 · Climate Action</p></div>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle navigation menu" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
+            <nav><ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="ais.html">Action Simulator</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="profile.html">User Profile</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="sitemap.html">Sitemap</a></li>
+            </ul></nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="editor-hero">
+                <h1>Maria Garcia's Editor Page</h1>
+                <p>Student 2 — Splash Screen &amp; Action Simulator Lead</p>
+            </section>
+
+            <nav class="editor-nav" aria-label="Internal page links">
+                <ul>
+                    <li><a href="#splash">Splash Screen</a></li>
+                    <li><a href="#ais">Action Simulator</a></li>
+                    <li><a href="#content">Content Page</a></li>
+                    <li><a href="#editor">Editor Page</a></li>
+                </ul>
+            </nav>
+
+            <div class="page-report" id="splash">
+                <h2>Splash Screen (splash.html)</h2>
+                <h3>Description</h3>
+                <p>The Splash Screen serves as the introductory presentation page for the ClimAct website. It features a full-screen background image, the ClimAct logo, a brief welcome message, and an automatic redirect to the Home Page. The splash screen provides an engaging first impression while the site content is presented.</p>
+                <h3>Technical Details</h3>
+                <p><strong>Auto-Redirect:</strong> Uses a meta refresh tag with a 10-second delay to automatically redirect users to the Home Page. This satisfies the requirement for automatic redirection without relying on JavaScript.</p>
+                <p><strong>CSS Animation:</strong> Features a custom CSS loading spinner animation using keyframes and border-radius manipulation. The loader provides visual feedback indicating that the site is preparing to load.</p>
+                <p><strong>JavaScript Countdown:</strong> A real-time countdown timer displays the seconds remaining before redirect. The timer updates every second using setInterval and automatically redirects when reaching zero.</p>
+                <p><strong>Skip Button:</strong> A clearly labelled "Skip to Home Page" button allows users to bypass the countdown and navigate immediately. This follows accessibility best practices by not forcing users to wait.</p>
+                <a href="splash.html" class="page-link">View Splash Screen →</a>
+            </div>
+
+            <div class="page-report" id="ais">
+                <h2>SDG Action Impact Simulator (ais.html)</h2>
+                <h3>Description</h3>
+                <p>The Action Impact Simulator is an interactive tool that allows users to explore how different everyday actions contribute to climate action. Users select from 8 action cards (such as reducing meat consumption, using public transport, planting trees) and receive immediate visual feedback on their collective impact score.</p>
+                <h3>Technical Details</h3>
+                <p><strong>Action Cards:</strong> Eight clickable cards, each representing a different sustainability action with an icon, title, description, and impact level badge (Low, Medium, or High). Cards toggle between selected and unselected states with CSS class changes.</p>
+                <p><strong>Scoring System:</strong> Each action has a numeric impact value. JavaScript calculates the total score of selected actions and maps it to one of four feedback levels: No Actions (0), Low Impact (1-20), Medium Impact (21-40), and High Impact (41+). The background colour transitions dynamically based on the current impact level.</p>
+                <p><strong>Dynamic Feedback:</strong> A results panel displays the current score, impact level badge, descriptive feedback text, and a count of selected actions. A progress bar visually represents the impact level.</p>
+                <p><strong>Reset Functionality:</strong> A reset button clears all selections, resets the score to zero, restores the original background colour, and clears all feedback — returning the simulator to its initial state.</p>
+                <a href="ais.html" class="page-link">View Action Simulator →</a>
+            </div>
+
+            <div class="page-report" id="content">
+                <h2>Content Page (content_ST2.html)</h2>
+                <h3>Description</h3>
+                <p>The content page covers Sustainable Transport and explores how greener travel choices can reduce carbon emissions. It includes five sections covering the transport problem, cycling and walking, public transport, electric vehicles, and practical student travel tips.</p>
+                <h3>Technical Details</h3>
+                <p><strong>Internal Navigation:</strong> A sidebar navigation component provides anchor links to each of the five main sections, enabling quick jumps within the document.</p>
+                <p><strong>Visual Content:</strong> Each section includes a high-quality photograph sourced from Unsplash with descriptive alt text for accessibility compliance.</p>
+                <p><strong>Go to Top Button:</strong> A fixed-position button in the bottom-right corner links back to the top of the page using an anchor reference.</p>
+                <a href="content_ST2.html" class="page-link">View Content Page →</a>
+            </div>
+
+            <div class="page-report" id="editor">
+                <h2>Editor Page (pageEditor_ST2.html)</h2>
+                <h3>Description</h3>
+                <p>This page documents all pages and features contributed by Student 2 (Maria Garcia). It includes comprehensive descriptions, technical implementation details, and direct navigation links to each contributed page.</p>
+                <a href="validation_ST2.html" class="page-link">View Validation Report →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section"><h4>ClimAct</h4><p>SDG 13: Climate Action</p></div>
+                <div class="footer-section"><h4>Links</h4><ul class="footer-links"><li><a href="home.html">Home</a></li><li><a href="splash.html">Splash</a></li><li><a href="ais.html">Simulator</a></li></ul></div>
+                <div class="footer-section"><h4>Editors</h4><ul class="footer-links"><li><a href="pageEditor_ST1.html">Editor ST1</a></li><li><a href="pageEditor_ST2.html">Editor ST2</a></li><li><a href="pageEditor_ST3.html">Editor ST3</a></li><li><a href="pageEditor_ST4.html">Editor ST4</a></li></ul></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 ClimAct | University of Westminster</p></div>
+        </div>
+    </footer>
+</body>
+</html>

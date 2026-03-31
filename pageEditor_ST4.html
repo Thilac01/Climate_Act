@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--
+    Page Editor Report - Student 4 (Sarah Williams)
+    ClimAct: Climate Action Website | SDG 13
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page Editor Report for Student 4 - Sarah Williams. Describes contributions to the ClimAct website.">
+    <title>ClimAct | Page Editor - Sarah Williams (ST4)</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .editor-hero { text-align: center; padding: 2rem 1.5rem; background: linear-gradient(135deg, #FF9800, #FFB74D); border-radius: var(--radius-xl); margin-bottom: var(--space-2xl); color: #fff; }
+        .editor-hero h1 { color: #fff; }
+        .editor-hero p { color: rgba(255,255,255,0.9); }
+        .editor-nav { background: var(--surface); border-radius: var(--radius-md); padding: 1.2rem; margin-bottom: var(--space-xl); box-shadow: var(--shadow-sm); }
+        .editor-nav ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .editor-nav ul li a { font-size: 0.85rem; color: var(--primary); padding: 0.4rem 0.8rem; display: block; border-radius: var(--radius-sm); transition: background 0.2s; border: 1px solid var(--primary-light); }
+        .editor-nav ul li a:hover { background: #e8f5e9; }
+        .page-report { background: var(--surface); border-radius: var(--radius-lg); padding: 2rem; margin-bottom: var(--space-xl); box-shadow: var(--shadow-md); border-left: 4px solid #7B1FA2; }
+        .page-report h2 { margin-bottom: 0.8rem; }
+        .page-report h3 { font-size: 1rem; margin-top: 1rem; margin-bottom: 0.5rem; color: var(--primary-dark); }
+        .page-report p { font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .page-link { display: inline-block; margin-top: 0.5rem; padding: 0.4rem 1rem; background: #7B1FA2; color: #fff; border-radius: var(--radius-sm); font-size: 0.85rem; text-decoration: none; }
+        .page-link:hover { background: #6A1B9A; color: #fff; }
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <svg width="45" height="45" viewBox="0 0 45 45" aria-label="ClimAct Logo"><circle cx="22.5" cy="22.5" r="22" fill="#FF9800"/><text x="22.5" y="28" text-anchor="middle" fill="#1B5E20" font-size="20" font-weight="bold">🌍</text></svg>
+                <div><p class="site-title">ClimAct</p><p class="site-tagline">SDG 13 · Climate Action</p></div>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle navigation menu" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
+            <nav><ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="ais.html">Action Simulator</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="profile.html">User Profile</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="sitemap.html">Sitemap</a></li>
+            </ul></nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="editor-hero">
+                <h1>Sarah Williams' Editor Page</h1>
+                <p>Student 4 — User Profile &amp; Sitemap Lead</p>
+            </section>
+
+            <nav class="editor-nav" aria-label="Internal page links">
+                <ul>
+                    <li><a href="#profile">User Profile</a></li>
+                    <li><a href="#sitemap">Sitemap</a></li>
+                    <li><a href="#content">Content Page</a></li>
+                    <li><a href="#editor">Editor Page</a></li>
+                </ul>
+            </nav>
+
+            <div class="page-report" id="profile">
+                <h2>User Profile - Progressive Builder (profile.html)</h2>
+                <h3>Description</h3>
+                <p>The User Profile page allows visitors to build their climate action profile progressively using JavaScript prompts (no HTML forms). The system guides users through three steps with three prompts each, tracks completion percentage, and displays the collected information dynamically in the page DOM.</p>
+                <h3>Technical Details</h3>
+                <p><strong>JavaScript Prompts:</strong> The system uses window.prompt() to collect user input across 9 questions divided into 3 steps: Basics (name, username, local area), Interests (SDG topic, preferred content, weekly time), and Actions (current action, future goal, climate pledge). Users can leave prompts blank to skip them.</p>
+                <p><strong>Progressive Disclosure:</strong> Profile sections are hidden by default and only appear once a step has data. New data is animated into view using CSS keyframe animations (slideIn). The profile output area updates dynamically via DOM manipulation without page reload.</p>
+                <p><strong>Completion Tracking:</strong> A progress bar with percentage indicator tracks how many of the 9 prompts have been answered. The bar uses CSS width transitions for smooth animation. A prompt count indicator shows x/9 prompts completed.</p>
+                <p><strong>Step Navigation:</strong> Step tabs show current, completed, and pending states with colour coding. Revisit buttons allow users to return to any step and update or fill in previously skipped prompts. The "Start / Continue Profile" button intelligently finds the next incomplete step.</p>
+                <p><strong>Confirmation:</strong> When all 9 prompts are answered, a confirmation section appears with a congratulatory message. The reset button clears all data after a confirm() dialog.</p>
+                <a href="profile.html" class="page-link">View Profile Page →</a>
+            </div>
+
+            <div class="page-report" id="sitemap">
+                <h2>Interactive SVG Sitemap (sitemap.html)</h2>
+                <h3>Description</h3>
+                <p>The Sitemap page presents a visual, hierarchical representation of the entire ClimAct website structure using an inline SVG graphic. Every page in the website is represented as a clickable node that navigates directly to that page.</p>
+                <h3>Technical Details</h3>
+                <p><strong>SVG Structure:</strong> The sitemap is built as an inline SVG with viewBox for responsive scaling. The hierarchy includes 5 levels: Entry Point (Splash Screen), Main Page (Home), Navigation Pages (7 pages), Content Pages (4 individual pages), and Supporting Pages (Page Editors and Validation Reports).</p>
+                <p><strong>Clickable Nodes:</strong> Each node is wrapped in an SVG anchor (&lt;a&gt;) element with href pointing to the respective HTML file. This provides native clickable functionality without JavaScript.</p>
+                <p><strong>Hover Feedback:</strong> CSS rules target SVG anchor children (rect and ellipse) to provide visual feedback on hover: reduced brightness and increased stroke width. This indicates interactivity to users.</p>
+                <p><strong>Accessibility:</strong> Each SVG anchor contains a &lt;title&gt; element providing descriptive text for screen readers. The overall SVG has role="img" and aria-label attributes. Focus states are styled with a visible orange outline.</p>
+                <p><strong>Colour Coding:</strong> Nodes are colour-coded by type: dark green (main page), medium green (navigation pages), light green (content pages), orange (page editors), grey (validation pages), and amber (entry point). A legend at the bottom explains the colour scheme.</p>
+                <a href="sitemap.html" class="page-link">View Sitemap Page →</a>
+            </div>
+
+            <div class="page-report" id="content">
+                <h2>Content Page (content_ST4.html)</h2>
+                <h3>Description</h3>
+                <p>The content page covers Green Living at Home with five sections: energy efficiency, water conservation, reduce/reuse/recycle, sustainable shopping, and digital carbon footprint. It includes internal navigation, relevant images, and practical tips.</p>
+                <a href="content_ST4.html" class="page-link">View Content Page →</a>
+            </div>
+
+            <div class="page-report" id="editor">
+                <h2>Editor Page (pageEditor_ST4.html)</h2>
+                <h3>Description</h3>
+                <p>This page documents all contributions by Student 4 (Sarah Williams), including the User Profile page, SVG Sitemap, and Content page.</p>
+                <a href="validation_ST4.html" class="page-link">View Validation Report →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section"><h4>ClimAct</h4><p>SDG 13: Climate Action</p></div>
+                <div class="footer-section"><h4>Links</h4><ul class="footer-links"><li><a href="home.html">Home</a></li><li><a href="profile.html">Profile</a></li><li><a href="sitemap.html">Sitemap</a></li></ul></div>
+                <div class="footer-section"><h4>Editors</h4><ul class="footer-links"><li><a href="pageEditor_ST1.html">Editor ST1</a></li><li><a href="pageEditor_ST2.html">Editor ST2</a></li><li><a href="pageEditor_ST3.html">Editor ST3</a></li><li><a href="pageEditor_ST4.html">Editor ST4</a></li></ul></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 ClimAct | University of Westminster</p></div>
+        </div>
+    </footer>
+</body>
+</html>

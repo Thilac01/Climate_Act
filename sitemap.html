@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<!--
+    Sitemap Page - ClimAct: Climate Action Website
+    SDG 13 - Climate Action
+    Assigned to: Student 4 (Sarah Williams)
+    Description: Graphical SVG sitemap showing website hierarchy
+    with clickable links, hover feedback, keyboard navigation,
+    and responsive scaling. All nodes link to respective pages.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ClimAct Sitemap - Visual overview of the website structure with interactive SVG navigation.">
+    <title>ClimAct | Sitemap</title>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Page-Specific Embedded CSS -->
+    <style>
+        /* ---- SITEMAP PAGE EMBEDDED CSS ---- */
+        .sitemap-hero {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-radius: var(--radius-xl);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .svg-container {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            overflow-x: auto;
+        }
+
+        .svg-container svg {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* SVG hover effects via CSS */
+        .svg-container svg a:hover rect,
+        .svg-container svg a:hover ellipse {
+            filter: brightness(0.85);
+            stroke-width: 3;
+        }
+
+        .svg-container svg a:focus rect,
+        .svg-container svg a:focus ellipse {
+            outline: 3px solid var(--secondary);
+            outline-offset: 3px;
+            stroke: #FF9800;
+            stroke-width: 3;
+        }
+
+        @media (max-width: 768px) {
+            .svg-container { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- ====== HEADER ====== -->
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <svg width="45" height="45" viewBox="0 0 45 45" aria-label="ClimAct Logo">
+                    <circle cx="22.5" cy="22.5" r="22" fill="#FF9800"/>
+                    <text x="22.5" y="28" text-anchor="middle" fill="#1B5E20" font-size="20" font-weight="bold">🌍</text>
+                </svg>
+                <div>
+                    <p class="site-title">ClimAct</p>
+                    <p class="site-tagline">SDG 13 · Climate Action</p>
+                </div>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle navigation menu" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="ais.html">Action Simulator</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="profile.html">User Profile</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="sitemap.html" class="active">Sitemap</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ====== MAIN CONTENT ====== -->
+    <main>
+        <div class="container">
+            <!-- Page Intro -->
+            <section class="sitemap-hero">
+                <h1>Website Sitemap</h1>
+                <p>A visual representation of the ClimAct website structure. Click any node to navigate to that page.</p>
+            </section>
+
+            <!-- SVG Sitemap -->
+            <div class="svg-container">
+                <svg viewBox="0 0 1100 750" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ClimAct website sitemap showing the hierarchy and connections between all pages">
+                    <!-- Title for accessibility -->
+                    <title>ClimAct Website Sitemap</title>
+
+                    <!-- ====== CONNECTION LINES ====== -->
+                    <!-- Splash to Home -->
+                    <line x1="550" y1="60" x2="550" y2="120" stroke="#90A4AE" stroke-width="2" stroke-dasharray="6,3"/>
+
+                    <!-- Home to child pages (main branching lines) -->
+                    <!-- Home to vertical connector -->
+                    <line x1="550" y1="170" x2="550" y2="220" stroke="#90A4AE" stroke-width="2"/>
+                    <!-- Horizontal connector line -->
+                    <line x1="80" y1="220" x2="1020" y2="220" stroke="#90A4AE" stroke-width="2"/>
+
+                    <!-- Vertical drops from horizontal connector to level 2 nodes -->
+                    <line x1="80" y1="220" x2="80" y2="260" stroke="#90A4AE" stroke-width="2"/>
+                    <line x1="230" y1="220" x2="230" y2="260" stroke="#90A4AE" stroke-width="2"/>
+                    <line x1="400" y1="220" x2="400" y2="260" stroke="#90A4AE" stroke-width="2"/>
+                    <line x1="550" y1="220" x2="550" y2="260" stroke="#90A4AE" stroke-width="2"/>
+                    <line x1="700" y1="220" x2="700" y2="260" stroke="#90A4AE" stroke-width="2"/>
+                    <line x1="870" y1="220" x2="870" y2="260" stroke="#90A4AE" stroke-width="2"/>
+                    <line x1="1020" y1="220" x2="1020" y2="260" stroke="#90A4AE" stroke-width="2"/>
+
+                    <!-- Content Pages connector from Home (lower level) -->
+                    <line x1="550" y1="310" x2="550" y2="380" stroke="#90A4AE" stroke-width="2"/>
+                    <line x1="200" y1="380" x2="900" y2="380" stroke="#90A4AE" stroke-width="2"/>
+                    <line x1="200" y1="380" x2="200" y2="420" stroke="#90A4AE" stroke-width="2"/>
+                    <line x1="400" y1="380" x2="400" y2="420" stroke="#90A4AE" stroke-width="2"/>
+                    <line x1="700" y1="380" x2="700" y2="420" stroke="#90A4AE" stroke-width="2"/>
+                    <line x1="900" y1="380" x2="900" y2="420" stroke="#90A4AE" stroke-width="2"/>
+
+                    <!-- Page Editor / Validation connectors (bottom level) -->
+                    <!-- Connector from Content Pages to Page Editors -->
+                    <line x1="350" y1="470" x2="350" y2="530" stroke="#90A4AE" stroke-width="1.5"/>
+                    <line x1="150" y1="530" x2="550" y2="530" stroke="#90A4AE" stroke-width="1.5"/>
+                    <line x1="150" y1="530" x2="150" y2="570" stroke="#90A4AE" stroke-width="1.5"/>
+                    <line x1="310" y1="530" x2="310" y2="570" stroke="#90A4AE" stroke-width="1.5"/>
+                    <line x1="470" y1="530" x2="470" y2="570" stroke="#90A4AE" stroke-width="1.5"/>
+
+                    <!-- Connector from Content Pages to Validations -->
+                    <line x1="750" y1="470" x2="750" y2="530" stroke="#90A4AE" stroke-width="1.5"/>
+                    <line x1="570" y1="530" x2="950" y2="530" stroke="#90A4AE" stroke-width="1.5"/>
+                    <line x1="630" y1="530" x2="630" y2="570" stroke="#90A4AE" stroke-width="1.5"/>
+                    <line x1="790" y1="530" x2="790" y2="570" stroke="#90A4AE" stroke-width="1.5"/>
+                    <line x1="950" y1="530" x2="950" y2="570" stroke="#90A4AE" stroke-width="1.5"/>
+
+                    <!-- ====== LEVEL 0: SPLASH SCREEN ====== -->
+                    <a href="splash.html">
+                        <title>Splash Screen</title>
+                        <ellipse cx="550" cy="40" rx="85" ry="25" fill="#FF9800" stroke="#F57C00" stroke-width="2" rx-hover="90"/>
+                        <text x="550" y="45" text-anchor="middle" fill="#fff" font-family="Poppins, sans-serif" font-size="13" font-weight="600">Splash Screen</text>
+                    </a>
+
+                    <!-- ====== LEVEL 1: HOME PAGE ====== -->
+                    <a href="home.html">
+                        <title>Home Page</title>
+                        <rect x="475" y="120" width="150" height="50" rx="12" fill="#1B5E20" stroke="#155d1e" stroke-width="2"/>
+                        <text x="550" y="150" text-anchor="middle" fill="#fff" font-family="Poppins, sans-serif" font-size="14" font-weight="700">Home Page</text>
+                    </a>
+
+                    <!-- ====== LEVEL 2: MAIN PAGES ====== -->
+                    <!-- Action Simulator -->
+                    <a href="ais.html">
+                        <title>Action Impact Simulator</title>
+                        <rect x="10" y="260" width="140" height="50" rx="10" fill="#2E7D32" stroke="#1B5E20" stroke-width="2"/>
+                        <text x="80" y="290" text-anchor="middle" fill="#fff" font-family="Poppins, sans-serif" font-size="11" font-weight="600">Action Simulator</text>
+                    </a>
+
+                    <!-- Gallery -->
+                    <a href="gallery.html">
+                        <title>Gallery</title>
+                        <rect x="163" y="260" width="134" height="50" rx="10" fill="#2E7D32" stroke="#1B5E20" stroke-width="2"/>
+                        <text x="230" y="290" text-anchor="middle" fill="#fff" font-family="Poppins, sans-serif" font-size="12" font-weight="600">Gallery</text>
+                    </a>
+
+                    <!-- User Profile -->
+                    <a href="profile.html">
+                        <title>User Profile</title>
+                        <rect x="333" y="260" width="134" height="50" rx="10" fill="#2E7D32" stroke="#1B5E20" stroke-width="2"/>
+                        <text x="400" y="290" text-anchor="middle" fill="#fff" font-family="Poppins, sans-serif" font-size="12" font-weight="600">User Profile</text>
+                    </a>
+
+                    <!-- Feedback -->
+                    <a href="feedback.html">
+                        <title>Feedback and Program Directory</title>
+                        <rect x="483" y="260" width="134" height="50" rx="10" fill="#2E7D32" stroke="#1B5E20" stroke-width="2"/>
+                        <text x="550" y="290" text-anchor="middle" fill="#fff" font-family="Poppins, sans-serif" font-size="12" font-weight="600">Feedback</text>
+                    </a>
+
+                    <!-- Team -->
+                    <a href="team.html">
+                        <title>Team Page</title>
+                        <rect x="633" y="260" width="134" height="50" rx="10" fill="#2E7D32" stroke="#1B5E20" stroke-width="2"/>
+                        <text x="700" y="290" text-anchor="middle" fill="#fff" font-family="Poppins, sans-serif" font-size="12" font-weight="600">Team</text>
+                    </a>
+
+                    <!-- Sitemap -->
+                    <a href="sitemap.html">
+                        <title>Sitemap</title>
+                        <rect x="803" y="260" width="134" height="50" rx="10" fill="#4CAF50" stroke="#2E7D32" stroke-width="2"/>
+                        <text x="870" y="290" text-anchor="middle" fill="#fff" font-family="Poppins, sans-serif" font-size="12" font-weight="600">Sitemap ★</text>
+                    </a>
+
+                    <!-- Content Pages Label -->
+                    <a href="#">
+                        <rect x="953" y="260" width="134" height="50" rx="10" fill="#546E7A" stroke="#37474F" stroke-width="2"/>
+                        <text x="1020" y="285" text-anchor="middle" fill="#fff" font-family="Poppins, sans-serif" font-size="10" font-weight="600">Content Pages</text>
+                        <text x="1020" y="299" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="Poppins, sans-serif" font-size="9">(see below)</text>
+                    </a>
+
+                    <!-- ====== LEVEL 3: CONTENT PAGES (Individual) ====== -->
+                    <text x="550" y="410" text-anchor="middle" fill="#546E7A" font-family="Poppins, sans-serif" font-size="11" font-style="italic">Individual Content Pages</text>
+
+                    <!-- Content ST1 -->
+                    <a href="content_ST1.html">
+                        <title>Content Page - Student 1: Renewable Energy</title>
+                        <rect x="125" y="420" width="150" height="45" rx="8" fill="#81C784" stroke="#4CAF50" stroke-width="2"/>
+                        <text x="200" y="447" text-anchor="middle" fill="#1B5E20" font-family="Poppins, sans-serif" font-size="10" font-weight="600">Content ST1</text>
+                    </a>
+
+                    <!-- Content ST2 -->
+                    <a href="content_ST2.html">
+                        <title>Content Page - Student 2: Sustainable Transport</title>
+                        <rect x="325" y="420" width="150" height="45" rx="8" fill="#81C784" stroke="#4CAF50" stroke-width="2"/>
+                        <text x="400" y="447" text-anchor="middle" fill="#1B5E20" font-family="Poppins, sans-serif" font-size="10" font-weight="600">Content ST2</text>
+                    </a>
+
+                    <!-- Content ST3 -->
+                    <a href="content_ST3.html">
+                        <title>Content Page - Student 3: Sustainable Food</title>
+                        <rect x="625" y="420" width="150" height="45" rx="8" fill="#81C784" stroke="#4CAF50" stroke-width="2"/>
+                        <text x="700" y="447" text-anchor="middle" fill="#1B5E20" font-family="Poppins, sans-serif" font-size="10" font-weight="600">Content ST3</text>
+                    </a>
+
+                    <!-- Content ST4 -->
+                    <a href="content_ST4.html">
+                        <title>Content Page - Student 4: Green Living</title>
+                        <rect x="825" y="420" width="150" height="45" rx="8" fill="#81C784" stroke="#4CAF50" stroke-width="2"/>
+                        <text x="900" y="447" text-anchor="middle" fill="#1B5E20" font-family="Poppins, sans-serif" font-size="10" font-weight="600">Content ST4</text>
+                    </a>
+
+                    <!-- ====== LEVEL 4: PAGE EDITORS ====== -->
+                    <text x="310" y="565" text-anchor="middle" fill="#546E7A" font-family="Poppins, sans-serif" font-size="10" font-style="italic">Page Editors</text>
+
+                    <a href="pageEditor_ST1.html">
+                        <title>Page Editor - Student 1</title>
+                        <rect x="80" y="570" width="140" height="40" rx="8" fill="#FFB74D" stroke="#FF9800" stroke-width="1.5"/>
+                        <text x="150" y="594" text-anchor="middle" fill="#4E342E" font-family="Poppins, sans-serif" font-size="9" font-weight="500">Editor ST1</text>
+                    </a>
+
+                    <a href="pageEditor_ST2.html">
+                        <title>Page Editor - Student 2</title>
+                        <rect x="240" y="570" width="140" height="40" rx="8" fill="#FFB74D" stroke="#FF9800" stroke-width="1.5"/>
+                        <text x="310" y="594" text-anchor="middle" fill="#4E342E" font-family="Poppins, sans-serif" font-size="9" font-weight="500">Editor ST2</text>
+                    </a>
+
+                    <a href="pageEditor_ST3.html">
+                        <title>Page Editor - Student 3</title>
+                        <rect x="400" y="570" width="140" height="40" rx="8" fill="#FFB74D" stroke="#FF9800" stroke-width="1.5"/>
+                        <text x="470" y="594" text-anchor="middle" fill="#4E342E" font-family="Poppins, sans-serif" font-size="9" font-weight="500">Editor ST3</text>
+                    </a>
+
+                    <!-- ====== LEVEL 4: VALIDATION PAGES ====== -->
+                    <text x="790" y="565" text-anchor="middle" fill="#546E7A" font-family="Poppins, sans-serif" font-size="10" font-style="italic">Validation Pages</text>
+
+                    <a href="validation_ST1.html">
+                        <title>Validation Page - Student 1</title>
+                        <rect x="560" y="570" width="140" height="40" rx="8" fill="#90A4AE" stroke="#607D8B" stroke-width="1.5"/>
+                        <text x="630" y="594" text-anchor="middle" fill="#fff" font-family="Poppins, sans-serif" font-size="9" font-weight="500">Validation ST1</text>
+                    </a>
+
+                    <a href="validation_ST2.html">
+                        <title>Validation Page - Student 2</title>
+                        <rect x="720" y="570" width="140" height="40" rx="8" fill="#90A4AE" stroke="#607D8B" stroke-width="1.5"/>
+                        <text x="790" y="594" text-anchor="middle" fill="#fff" font-family="Poppins, sans-serif" font-size="9" font-weight="500">Validation ST2</text>
+                    </a>
+
+                    <a href="validation_ST3.html">
+                        <title>Validation Page - Student 3</title>
+                        <rect x="880" y="570" width="140" height="40" rx="8" fill="#90A4AE" stroke="#607D8B" stroke-width="1.5"/>
+                        <text x="950" y="594" text-anchor="middle" fill="#fff" font-family="Poppins, sans-serif" font-size="9" font-weight="500">Validation ST3</text>
+                    </a>
+
+                    <!-- Additional bottom row for ST4 editors/validation -->
+                    <a href="pageEditor_ST4.html">
+                        <title>Page Editor - Student 4</title>
+                        <rect x="240" y="630" width="140" height="40" rx="8" fill="#FFB74D" stroke="#FF9800" stroke-width="1.5"/>
+                        <text x="310" y="654" text-anchor="middle" fill="#4E342E" font-family="Poppins, sans-serif" font-size="9" font-weight="500">Editor ST4</text>
+                    </a>
+
+                    <a href="validation_ST4.html">
+                        <title>Validation Page - Student 4</title>
+                        <rect x="720" y="630" width="140" height="40" rx="8" fill="#90A4AE" stroke="#607D8B" stroke-width="1.5"/>
+                        <text x="790" y="654" text-anchor="middle" fill="#fff" font-family="Poppins, sans-serif" font-size="9" font-weight="500">Validation ST4</text>
+                    </a>
+
+                    <!-- ====== LEGEND ====== -->
+                    <rect x="30" y="690" width="15" height="15" rx="3" fill="#1B5E20"/>
+                    <text x="52" y="702" fill="#546E7A" font-family="Poppins, sans-serif" font-size="10">Main Page</text>
+
+                    <rect x="150" y="690" width="15" height="15" rx="3" fill="#2E7D32"/>
+                    <text x="172" y="702" fill="#546E7A" font-family="Poppins, sans-serif" font-size="10">Navigation Pages</text>
+
+                    <rect x="310" y="690" width="15" height="15" rx="3" fill="#81C784"/>
+                    <text x="332" y="702" fill="#546E7A" font-family="Poppins, sans-serif" font-size="10">Content Pages</text>
+
+                    <rect x="450" y="690" width="15" height="15" rx="3" fill="#FFB74D"/>
+                    <text x="472" y="702" fill="#546E7A" font-family="Poppins, sans-serif" font-size="10">Page Editors</text>
+
+                    <rect x="580" y="690" width="15" height="15" rx="3" fill="#90A4AE"/>
+                    <text x="602" y="702" fill="#546E7A" font-family="Poppins, sans-serif" font-size="10">Validation Pages</text>
+
+                    <ellipse cx="737" cy="697" rx="8" ry="8" fill="#FF9800"/>
+                    <text x="752" y="702" fill="#546E7A" font-family="Poppins, sans-serif" font-size="10">Entry Point</text>
+                </svg>
+            </div>
+        </div>
+    </main>
+
+    <!-- ====== FOOTER ====== -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>ClimAct</h4>
+                    <p>A student-built website dedicated to SDG 13: Climate Action.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="ais.html">Action Simulator</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>More</h4>
+                    <ul class="footer-links">
+                        <li><a href="team.html">Meet the Team</a></li>
+                        <li><a href="profile.html">User Profile</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Page Info</h4>
+                    <ul class="footer-links">
+                        <li><a href="pageEditor_ST4.html" target="_blank">Page Editor (Sarah Williams)</a></li>
+                        <li><a href="validation_ST4.html" target="_blank">Validation Report</a></li>
+                        <li><a href="#">Accessibility Statement</a></li>
+                    </ul>
+                    <p style="margin-top: 0.5rem; font-size: 0.8rem;">Student 4: Sarah Williams</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ClimAct | SDG 13: Climate Action | University of Westminster</p>
+                <p>All images sourced from Unsplash (royalty-free).</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

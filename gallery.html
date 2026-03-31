@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<!--
+    Gallery Page - ClimAct: Climate Action Website
+    SDG 13 - Climate Action
+    Assigned to: Student 1 (Alex Johnson)
+    Description: Interactive gallery with thumbnails, click-to-expand,
+    and user customisation features. JavaScript required.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ClimAct Gallery - Explore powerful images of climate action and environmental change.">
+    <title>ClimAct | Gallery</title>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Page-Specific CSS for Gallery -->
+    <style>
+        /* ---- GALLERY PAGE EMBEDDED CSS ---- */
+        /* Rule 1: Gallery intro section with unique typography */
+        .gallery-intro {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-radius: var(--radius-xl);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .gallery-intro h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, var(--primary-dark), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Rule 2: Gallery grid layout */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: var(--space-lg);
+        }
+
+        /* Rule 3: Gallery thumbnail cards */
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s ease;
+            aspect-ratio: 4/3;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover { /* Hover - visual feedback */
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-item .item-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 1rem 1rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: #fff;
+        }
+
+        .gallery-item .item-label h4 {
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .gallery-item .item-label p {
+            color: rgba(255,255,255,0.75);
+            font-size: 0.75rem;
+            margin: 0;
+        }
+
+        /* Rule 4: Modal overlay styling */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Rule 5: Modal content container */
+        .modal-content {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-body h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-body p {
+            line-height: 1.8;
+        }
+
+        /* Rule 6: Close button */
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 0, 0, 0.7);
+        }
+
+        /* Rule 7: User customisation controls */
+        .custom-controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #f5f5f5;
+            border-radius: var(--radius-md);
+        }
+
+        .custom-controls label {
+            font-weight: 500;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .custom-controls select,
+        .custom-controls input[type="color"] {
+            padding: 0.4rem 0.6rem;
+            border: 1px solid #ddd;
+            border-radius: var(--radius-sm);
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-intro h1 { font-size: 2rem; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+            .modal-content img { height: 220px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- ====== HEADER WITH NAVIGATION ====== -->
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <svg width="45" height="45" viewBox="0 0 45 45" aria-label="ClimAct Logo">
+                    <circle cx="22.5" cy="22.5" r="22" fill="#FF9800"/>
+                    <text x="22.5" y="28" text-anchor="middle" fill="#1B5E20" font-size="20" font-weight="bold">🌍</text>
+                </svg>
+                <div>
+                    <p class="site-title">ClimAct</p>
+                    <p class="site-tagline">SDG 13 · Climate Action</p>
+                </div>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle navigation menu" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="ais.html">Action Simulator</a></li>
+                    <li><a href="gallery.html" class="active">Gallery</a></li>
+                    <li><a href="profile.html">User Profile</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="sitemap.html">Sitemap</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ====== MAIN CONTENT ====== -->
+    <main>
+        <div class="container">
+            <!-- Gallery Introduction -->
+            <section class="gallery-intro">
+                <h1>Climate Action Gallery</h1>
+                <p>Explore powerful images that illustrate the challenges and solutions in our fight against climate change. Click any image to learn more.</p>
+            </section>
+
+            <!-- Gallery Grid (Thumbnails) -->
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Gallery items will be populated by JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- ====== MODAL (Extended View) ====== -->
+    <div class="modal-overlay" id="galleryModal">
+        <div class="modal-content" id="modalContent">
+            <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
+            <img id="modalImage" src="" alt="">
+            <div class="modal-body" id="modalBody">
+                <h2 id="modalTitle"></h2>
+                <p id="modalDescription"></p>
+
+                <!-- User Customisation Controls -->
+                <div class="custom-controls">
+                    <label>
+                        Background:
+                        <input type="color" id="bgColorPicker" value="#ffffff" title="Change background colour">
+                    </label>
+                    <label>
+                        Text Colour:
+                        <input type="color" id="textColorPicker" value="#1a1a1a" title="Change text colour">
+                    </label>
+                    <label>
+                        Font:
+                        <select id="fontPicker" title="Change font style">
+                            <option value="'Poppins', sans-serif">Poppins</option>
+                            <option value="'Playfair Display', serif">Playfair Display</option>
+                            <option value="Georgia, serif">Georgia</option>
+                            <option value="'Courier New', monospace">Courier New</option>
+                            <option value="Arial, sans-serif">Arial</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== FOOTER ====== -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>ClimAct</h4>
+                    <p>A student-built website dedicated to SDG 13: Climate Action.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="ais.html">Action Simulator</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>More</h4>
+                    <ul class="footer-links">
+                        <li><a href="team.html">Meet the Team</a></li>
+                        <li><a href="profile.html">User Profile</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Page Info</h4>
+                    <ul class="footer-links">
+                        <li><a href="pageEditor_ST1.html" target="_blank">Page Editor (Alex Johnson)</a></li>
+                        <li><a href="validation_ST1.html" target="_blank">Validation Report</a></li>
+                        <li><a href="#">Accessibility Statement</a></li>
+                    </ul>
+                    <p style="margin-top: 0.5rem; font-size: 0.8rem;">Student 1: Alex Johnson</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ClimAct | SDG 13: Climate Action | University of Westminster</p>
+                <p>All images sourced from Unsplash (royalty-free).</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====== JAVASCRIPT: Gallery Interactivity ====== -->
+    <script>
+        /* ============================================
+           Gallery Data - Array of gallery items
+           Each item contains image, title, and description
+           ============================================ */
+        const galleryData = [
+            {
+                id: 1,
+                image: "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=600&q=80",
+                title: "Deforestation Impact",
+                shortLabel: "Forests at Risk",
+                alt: "Aerial view of deforested land contrasting with remaining forest",
+                description: "Deforestation contributes approximately 10% of global greenhouse gas emissions. Tropical forests are being cleared at alarming rates for agriculture, logging, and development. Protecting and restoring forests is critical for absorbing CO2 and maintaining biodiversity. Every year, we lose approximately 10 million hectares of forest — an area roughly the size of Iceland."
+            },
+            {
+                id: 2,
+                image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&q=80",
+                title: "Wind Energy Revolution",
+                shortLabel: "Clean Power",
+                alt: "Wind turbines generating clean energy in an open landscape",
+                description: "Wind energy is one of the fastest-growing renewable energy sources worldwide. Modern wind turbines can generate enough electricity to power thousands of homes while producing zero emissions. Countries like Denmark already generate over 40% of their electricity from wind power, proving that a clean energy transition is achievable and economically viable."
+            },
+            {
+                id: 3,
+                image: "https://images.unsplash.com/photo-1569163139599-0f4517e36f51?w=600&q=80",
+                title: "Melting Ice Caps",
+                shortLabel: "Arctic Crisis",
+                alt: "Melting glaciers and ice caps due to global warming",
+                description: "The Arctic is warming nearly four times faster than the global average. Ice sheets in Greenland and Antarctica are losing mass at accelerating rates, contributing to rising sea levels that threaten coastal communities worldwide. Since 1979, Arctic sea ice has declined by over 40%. This loss creates a feedback loop as darker ocean water absorbs more heat."
+            },
+            {
+                id: 4,
+                image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80",
+                title: "Solar Power Future",
+                shortLabel: "Solar Innovation",
+                alt: "Solar panel installation on rooftops generating clean energy",
+                description: "Solar energy has become the cheapest source of electricity in history. The cost of solar panels has dropped by 89% since 2010, making it accessible to communities worldwide. Rooftop solar installations empower homeowners to generate their own clean energy, reduce electricity bills, and contribute to a decentralised energy grid that is more resilient and sustainable."
+            },
+            {
+                id: 5,
+                image: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=600&q=80",
+                title: "Community Action",
+                shortLabel: "People Power",
+                alt: "Volunteers participating in a community clean-up event",
+                description: "Grassroots community action is essential for addressing climate change at the local level. From beach clean-ups to tree planting drives, community initiatives build awareness, foster connections, and create tangible environmental improvements. Studies show that community-led environmental projects are more sustainable and effective than top-down approaches."
+            },
+            {
+                id: 6,
+                image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&q=80",
+                title: "Sustainable Living",
+                shortLabel: "Green Lifestyle",
+                alt: "Eco-friendly lifestyle with plants and sustainable products",
+                description: "Adopting sustainable living practices can significantly reduce individual carbon footprints. Simple changes like reducing food waste, choosing public transport, buying local produce, and minimising single-use plastics collectively make a massive difference. The average person can reduce their carbon footprint by up to 60% through conscious lifestyle changes."
+            }
+        ];
+
+        /* ============================================
+           Render Gallery Thumbnails
+           Dynamically creates gallery items in the DOM
+           ============================================ */
+        const galleryGrid = document.getElementById('galleryGrid');
+
+        galleryData.forEach(function(item) {
+            /* Create gallery item element */
+            const galleryItem = document.createElement('div');
+            galleryItem.className = 'gallery-item';
+            galleryItem.setAttribute('tabindex', '0');
+            galleryItem.setAttribute('role', 'button');
+            galleryItem.setAttribute('aria-label', 'View details for ' + item.title);
+
+            /* Set inner HTML with image and label */
+            galleryItem.innerHTML = 
+                '<img src="' + item.image + '" alt="' + item.alt + '">' +
+                '<div class="item-label">' +
+                    '<h4>' + item.shortLabel + '</h4>' +
+                    '<p>Click to explore</p>' +
+                '</div>';
+
+            /* Click event listener to open modal */
+            galleryItem.addEventListener('click', function() {
+                openModal(item);
+            });
+
+            /* Keyboard accessibility - Enter key opens modal */
+            galleryItem.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    openModal(item);
+                }
+            });
+
+            /* Hover interaction - JavaScript event listener to enhance visual feedback */
+            galleryItem.addEventListener('mouseenter', function() {
+                this.style.outline = '3px solid var(--secondary)';
+            });
+
+            galleryItem.addEventListener('mouseleave', function() {
+                this.style.outline = 'none';
+            });
+
+            galleryGrid.appendChild(galleryItem);
+        });
+
+        /* ============================================
+           Modal Functions
+           Open, close, and populate the extended view
+           ============================================ */
+        const modal = document.getElementById('galleryModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalBody = document.getElementById('modalBody');
+        const modalClose = document.getElementById('modalClose');
+
+        /* Open modal with selected gallery item data */
+        function openModal(item) {
+            modalImage.src = item.image;
+            modalImage.alt = item.alt;
+            modalTitle.textContent = item.title;
+            modalDescription.textContent = item.description;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; /* Prevent background scroll */
+
+            /* Reset customisations when opening */
+            modalBody.style.backgroundColor = '#ffffff';
+            modalBody.style.color = '#1a1a1a';
+            modalBody.style.fontFamily = "'Poppins', sans-serif";
+            document.getElementById('bgColorPicker').value = '#ffffff';
+            document.getElementById('textColorPicker').value = '#1a1a1a';
+            document.getElementById('fontPicker').value = "'Poppins', sans-serif";
+        }
+
+        /* Close modal */
+        modalClose.addEventListener('click', function() {
+            closeModal();
+        });
+
+        /* Close modal when clicking outside content */
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        /* Close modal with Escape key */
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        /* ============================================
+           User Customisation Controls
+           Change colour scheme and font in extended view
+           ============================================ */
+
+        /* Background colour change */
+        document.getElementById('bgColorPicker').addEventListener('input', function(e) {
+            modalBody.style.backgroundColor = e.target.value;
+        });
+
+        /* Text colour change */
+        document.getElementById('textColorPicker').addEventListener('input', function(e) {
+            modalBody.style.color = e.target.value;
+            modalTitle.style.color = e.target.value;
+            modalDescription.style.color = e.target.value;
+        });
+
+        /* Font style change */
+        document.getElementById('fontPicker').addEventListener('change', function(e) {
+            modalBody.style.fontFamily = e.target.value;
+        });
+    </script>
+</body>
+</html>

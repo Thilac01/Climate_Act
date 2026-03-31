@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--
+    Content Page - Student 3 (James Chen)
+    Topic: Sustainable Food & Agriculture
+    ClimAct: Climate Action Website | SDG 13
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sustainable Food and Agriculture - How our food choices impact climate change and the planet.">
+    <title>ClimAct | Sustainable Food</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .content-nav { background: var(--surface); border-radius: var(--radius-md); padding: 1.2rem; margin-bottom: var(--space-xl); box-shadow: var(--shadow-sm); }
+        .content-nav h3 { font-size: 1rem; margin-bottom: 0.8rem; }
+        .content-nav ul { list-style: none; padding: 0; }
+        .content-nav ul li { margin-bottom: 0.3rem; }
+        .content-nav ul li a { font-size: 0.85rem; color: var(--primary); padding: 0.3rem 0.5rem; display: block; border-radius: var(--radius-sm); transition: background 0.2s; }
+        .content-nav ul li a:hover { background: #e8f5e9; }
+        .content-section { margin-bottom: var(--space-2xl); }
+        .content-section img { border-radius: var(--radius-md); box-shadow: var(--shadow-md); margin: var(--space-md) 0; width: 100%; max-height: 400px; object-fit: cover; }
+        .go-top { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; text-decoration: none; box-shadow: var(--shadow-lg); z-index: 500; transition: transform 0.3s ease; }
+        .go-top:hover { transform: translateY(-3px); color: #fff; }
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <svg width="45" height="45" viewBox="0 0 45 45" aria-label="ClimAct Logo"><circle cx="22.5" cy="22.5" r="22" fill="#FF9800"/><text x="22.5" y="28" text-anchor="middle" fill="#1B5E20" font-size="20" font-weight="bold">🌍</text></svg>
+                <div><p class="site-title">ClimAct</p><p class="site-tagline">SDG 13 · Climate Action</p></div>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle navigation menu" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
+            <nav><ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="ais.html">Action Simulator</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="profile.html">User Profile</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="sitemap.html">Sitemap</a></li>
+            </ul></nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Sustainable Food &amp; Agriculture</h1>
+            <p>Our food system is responsible for up to one-third of global greenhouse gas emissions. Changing how we grow, distribute, and consume food is essential for climate action.</p>
+
+            <nav class="content-nav" aria-label="Page sections">
+                <h3>📖 On This Page</h3>
+                <ul>
+                    <li><a href="#footprint">Food's Carbon Footprint</a></li>
+                    <li><a href="#plant-based">Plant-Based Diets</a></li>
+                    <li><a href="#local">Local &amp; Seasonal Food</a></li>
+                    <li><a href="#waste">Reducing Food Waste</a></li>
+                    <li><a href="#student-tips">Tips for Students</a></li>
+                </ul>
+            </nav>
+
+            <section id="footprint" class="content-section">
+                <h2>🌾 Food's Carbon Footprint</h2>
+                <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&q=80" alt="Agricultural farmland showing the scale of modern food production">
+                <p>The food system — from farming and transportation to processing, packaging, and waste — generates approximately 26% of global greenhouse gas emissions. Livestock farming alone accounts for 14.5% of emissions, primarily through methane from cattle, nitrous oxide from fertilisers, and carbon dioxide from land-use change such as deforestation for grazing.</p>
+                <p>Understanding the carbon footprint of different foods is the first step towards making more sustainable dietary choices. Beef production, for example, generates approximately 60 kg of CO2-equivalent per kilogram of product, while plant-based proteins like lentils generate less than 1 kg. This staggering difference highlights the potential impact of shifting diets.</p>
+            </section>
+
+            <section id="plant-based" class="content-section">
+                <h2>🥗 Plant-Based Diets</h2>
+                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80" alt="Colourful plant-based meal with fresh vegetables and grains">
+                <p>Shifting towards more plant-based diets is one of the most effective individual actions for reducing food-related emissions. Research from the University of Oxford found that a plant-based diet can reduce an individual's food carbon footprint by up to 73%. Even partial shifts, such as adopting a flexitarian approach (reducing meat to 2-3 meals per week), can have significant benefits.</p>
+                <p>Plant-based foods generally require less land, water, and energy to produce than animal products. Growing demand has led to a surge in innovative plant-based alternatives, from burgers and sausages to dairy-free milks and cheeses, making it easier than ever to enjoy diverse, satisfying meals with a lower environmental impact.</p>
+            </section>
+
+            <section id="local" class="content-section">
+                <h2>📍 Local &amp; Seasonal Food</h2>
+                <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=800&q=80" alt="Fresh local produce displayed at a farmers market">
+                <p>Buying locally grown, seasonal food reduces the emissions associated with long-distance transportation, cold storage, and artificial growing environments. Food miles — the distance food travels from farm to plate — can add significantly to a product's carbon footprint, especially for air-freighted goods like out-of-season berries or exotic vegetables.</p>
+                <p>Farmers' markets, community-supported agriculture (CSA) schemes, and local food cooperatives offer direct access to fresh, seasonal produce while supporting local economies. Growing your own food, even in a small window box or garden, reduces packaging, transport, and food miles to zero.</p>
+            </section>
+
+            <section id="waste" class="content-section">
+                <h2>🗑️ Reducing Food Waste</h2>
+                <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=800&q=80" alt="Composting food waste to reduce landfill and emissions">
+                <p>Approximately one-third of all food produced globally is wasted — over 1.3 billion tonnes per year. In the UK, households waste an estimated 6.6 million tonnes of food annually, of which 4.5 million tonnes is edible. When food ends up in landfill, it decomposes anaerobically, producing methane — a greenhouse gas 80 times more potent than CO2 over 20 years.</p>
+                <p>Reducing food waste is one of the most impactful and accessible climate actions anyone can take. Simple strategies include meal planning, understanding date labels (best before vs use by), proper food storage, creative use of leftovers, and composting unavoidable food scraps.</p>
+            </section>
+
+            <section id="student-tips" class="content-section">
+                <h2>🎓 Tips for Students</h2>
+                <p>Practical ways to eat sustainably while at university:</p>
+                <ul>
+                    <li><strong>Plan your meals weekly:</strong> Reduces waste and saves money on unnecessary purchases.</li>
+                    <li><strong>Try Meat-Free Mondays:</strong> Start with one plant-based day per week and gradually increase.</li>
+                    <li><strong>Buy in bulk:</strong> Purchase staples like rice, pasta, and pulses in bulk to reduce packaging.</li>
+                    <li><strong>Use campus food sharing:</strong> Many universities have apps or schemes to share surplus food.</li>
+                    <li><strong>Grow herbs on your windowsill:</strong> Fresh basil, mint, or coriander reduces packaging and food miles.</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <a href="#top" class="go-top" aria-label="Go to top of page">↑</a>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section"><h4>ClimAct</h4><p>SDG 13: Climate Action</p></div>
+                <div class="footer-section"><h4>Quick Links</h4><ul class="footer-links"><li><a href="home.html">Home</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="feedback.html">Feedback</a></li></ul></div>
+                <div class="footer-section"><h4>More</h4><ul class="footer-links"><li><a href="team.html">Team</a></li><li><a href="sitemap.html">Sitemap</a></li></ul></div>
+                <div class="footer-section"><h4>Page Info</h4><ul class="footer-links"><li><a href="pageEditor_ST3.html" target="_blank">Page Editor (James Chen)</a></li><li><a href="validation_ST3.html" target="_blank">Validation</a></li></ul><p style="margin-top:0.5rem;font-size:0.8rem;">Student 3: James Chen</p></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 ClimAct | University of Westminster</p></div>
+        </div>
+    </footer>
+</body>
+</html>

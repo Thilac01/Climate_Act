@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<!--
+    Feedback & Program Directory Page - ClimAct: Climate Action Website
+    SDG 13 - Climate Action
+    Assigned to: Student 3 (James Chen)
+    Description: Scrollable programme directory, ratings/reviews section,
+    and JavaScript-enhanced feedback form with live character counter,
+    form validation, and submission confirmation.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ClimAct Feedback - Explore climate action programmes and share your feedback.">
+    <title>ClimAct | Feedback &amp; Programs</title>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Page-Specific Embedded CSS -->
+    <style>
+        /* ---- FEEDBACK PAGE EMBEDDED CSS ---- */
+        /* Rule 1: Page intro banner */
+        .feedback-hero {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-radius: var(--radius-xl);
+            margin-bottom: var(--space-2xl);
+        }
+
+        /* Rule 2: Scrollable programme section container */
+        .programme-section {
+            max-height: 600px;
+            overflow-y: auto;
+            padding-right: var(--space-sm);
+            margin-bottom: var(--space-2xl);
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-light) #e0e0e0;
+        }
+
+        .programme-section::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .programme-section::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 4px;
+        }
+
+        /* Rule 3: Programme cards styling */
+        .programme-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--space-lg);
+        }
+
+        .programme-card {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .programme-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .programme-card .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .programme-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .programme-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .programme-card .btn {
+            padding: 0.5rem 1.2rem;
+            font-size: 0.8rem;
+        }
+
+        .programme-card .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Rule 4: Sort/filter dropdown */
+        .filter-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .filter-bar select {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary-light);
+            border-radius: var(--radius-sm);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem;
+            background: var(--surface);
+            cursor: pointer;
+        }
+
+        /* Rule 5: Reviews section styling */
+        .reviews-section {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .overall-rating {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .rating-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        .rating-label {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .rating-count {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .review-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--space-lg);
+        }
+
+        .review-card {
+            background: var(--bg-primary);
+            border-radius: var(--radius-md);
+            padding: 1.2rem;
+            border-left: 4px solid var(--primary-light);
+        }
+
+        .review-card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .review-card p {
+            font-size: 0.85rem;
+        }
+
+        .review-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.8rem;
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .review-rating {
+            color: var(--secondary);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .see-more {
+            color: var(--primary);
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        /* Rule 6: Form error/success styling */
+        .error-message {
+            color: #d32f2f;
+            font-size: 0.78rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .form-group.error input,
+        .form-group.error textarea,
+        .form-group.error select {
+            border-color: #d32f2f;
+        }
+
+        .form-group.error .error-message {
+            display: block;
+        }
+
+        .char-counter {
+            text-align: right;
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-top: 0.2rem;
+        }
+
+        .char-counter.warning {
+            color: #FF9800;
+        }
+
+        .char-counter.danger {
+            color: #d32f2f;
+        }
+
+        .confirmation-msg {
+            display: none;
+            background: #e8f5e9;
+            border: 2px solid #4CAF50;
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: var(--space-lg);
+        }
+
+        .confirmation-msg h3 {
+            color: #2E7D32;
+        }
+
+        .confirmation-msg p {
+            color: #4a4a4a;
+        }
+
+        @media (max-width: 768px) {
+            .overall-rating { flex-direction: column; text-align: center; }
+            .programme-section { max-height: 450px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- ====== HEADER ====== -->
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <svg width="45" height="45" viewBox="0 0 45 45" aria-label="ClimAct Logo">
+                    <circle cx="22.5" cy="22.5" r="22" fill="#FF9800"/>
+                    <text x="22.5" y="28" text-anchor="middle" fill="#1B5E20" font-size="20" font-weight="bold">🌍</text>
+                </svg>
+                <div>
+                    <p class="site-title">ClimAct</p>
+                    <p class="site-tagline">SDG 13 · Climate Action</p>
+                </div>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle navigation menu" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="ais.html">Action Simulator</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="profile.html">User Profile</a></li>
+                    <li><a href="feedback.html" class="active">Feedback</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="sitemap.html">Sitemap</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ====== MAIN CONTENT ====== -->
+    <main>
+        <div class="container">
+            <!-- Page Intro -->
+            <section class="feedback-hero">
+                <h1>Feedback &amp; Programme Directory</h1>
+                <p>Explore climate action programmes, read reviews from participants, and share your own feedback to help our community grow.</p>
+            </section>
+
+            <!-- ====== SCROLLABLE PROGRAMME DIRECTORY ====== -->
+            <section>
+                <div class="section-title">
+                    <h2>Climate Action Programmes</h2>
+                    <p>Find opportunities to get involved in sustainability initiatives</p>
+                </div>
+
+                <!-- Filter/Sort Bar -->
+                <div class="filter-bar">
+                    <p style="margin:0; color: var(--text-light); font-size: 0.9rem;">Showing 4 programmes</p>
+                    <select aria-label="Sort programmes">
+                        <option value="popular">Most Popular</option>
+                        <option value="nearest">Nearest</option>
+                        <option value="student">Student-Friendly</option>
+                        <option value="newest">Newest First</option>
+                    </select>
+                </div>
+
+                <!-- Scrollable Section -->
+                <div class="programme-section">
+                    <div class="programme-cards">
+                        <!-- Programme Card 1 -->
+                        <div class="programme-card">
+                            <div class="card-icon">🌳</div>
+                            <h3>Campus Tree Planting Drive</h3>
+                            <p>Join fellow students to plant native trees across campus grounds, contributing to carbon offset and local biodiversity. Runs every Saturday morning during term.</p>
+                            <a href="#" class="btn btn-primary">Get Involved</a>
+                        </div>
+
+                        <!-- Programme Card 2 -->
+                        <div class="programme-card">
+                            <div class="card-icon">♻️</div>
+                            <h3>Zero Waste Challenge</h3>
+                            <p>A 30-day challenge designed for students to reduce waste in daily life. Track progress, share tips, and compete with friends for the lowest waste footprint.</p>
+                            <a href="#" class="btn btn-primary">Join Challenge</a>
+                        </div>
+
+                        <!-- Programme Card 3 -->
+                        <div class="programme-card">
+                            <div class="card-icon">🚲</div>
+                            <h3>Green Commute Initiative</h3>
+                            <p>Switch to cycling, walking, or public transport for your daily commute. Earn points and rewards while cutting your carbon emissions by up to 65%.</p>
+                            <a href="#" class="btn btn-primary">Learn More</a>
+                        </div>
+
+                        <!-- Programme Card 4 -->
+                        <div class="programme-card">
+                            <div class="card-icon">🔬</div>
+                            <h3>Climate Research Volunteers</h3>
+                            <p>Assist university researchers with data collection for local climate impact studies. Gain experience in field research while contributing to vital climate science.</p>
+                            <a href="#" class="btn btn-primary">Apply Now</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ====== RATINGS & REVIEWS SECTION ====== -->
+            <section class="reviews-section">
+                <div class="section-title">
+                    <h2>Ratings &amp; Reviews</h2>
+                </div>
+
+                <!-- Overall Rating Summary -->
+                <div class="overall-rating">
+                    <div>
+                        <span class="rating-number">8.6</span><span style="font-size:1.5rem; color: var(--text-light);">/10</span>
+                    </div>
+                    <div>
+                        <div class="rating-label">Excellent</div>
+                        <div class="rating-count">Based on 127 reviews</div>
+                    </div>
+                </div>
+
+                <!-- Individual Review Cards -->
+                <div class="review-cards">
+                    <!-- Review 1 -->
+                    <div class="review-card">
+                        <h4>Life-changing experience!</h4>
+                        <p>The tree planting drive was incredibly well-organised. I learned so much about native species and carbon sequestration. Highly recommend for any student...</p>
+                        <a href="#" class="see-more">See more</a>
+                        <div class="review-meta">
+                            <span>Emily T. · 15 Feb 2026</span>
+                            <span class="review-rating">9/10</span>
+                        </div>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="review-card">
+                        <h4>Great community initiative</h4>
+                        <p>The Zero Waste Challenge helped me reduce my weekly waste by over 60%. The community support and tips were fantastic. Would love to see more events like this...</p>
+                        <a href="#" class="see-more">See more</a>
+                        <div class="review-meta">
+                            <span>Marcus L. · 8 Feb 2026</span>
+                            <span class="review-rating">8/10</span>
+                        </div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="review-card">
+                        <h4>Practical and accessible</h4>
+                        <p>As a first-year student, I was nervous about joining, but the Green Commute Initiative made it so easy to start. My monthly transport costs dropped significantly too...</p>
+                        <a href="#" class="see-more">See more</a>
+                        <div class="review-meta">
+                            <span>Priya K. · 1 Feb 2026</span>
+                            <span class="review-rating">9/10</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ====== FEEDBACK FORM ====== -->
+            <section>
+                <div class="section-title">
+                    <h2>Share Your Feedback</h2>
+                    <p>We'd love to hear from you! Help us improve our climate action programmes.</p>
+                </div>
+
+                <form id="feedbackForm" novalidate>
+                    <!-- Personal Details Fieldset -->
+                    <fieldset>
+                        <legend>Personal Details</legend>
+
+                        <div class="form-group">
+                            <label for="fullName">Full Name <span style="color:#d32f2f;">*</span></label>
+                            <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                            <span class="error-message" id="fullNameError">Please enter your full name.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address <span style="color:#d32f2f;">*</span></label>
+                            <input type="email" id="email" name="email" required placeholder="you@example.com">
+                            <span class="error-message" id="emailError">Please enter a valid email address.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telephone">Telephone Number</label>
+                            <input type="tel" id="telephone" name="telephone" placeholder="+44 1234 567890">
+                            <span class="error-message" id="telephoneError">Please enter a valid telephone number.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea id="address" name="address" rows="3" placeholder="Enter your address"></textarea>
+                        </div>
+                    </fieldset>
+
+                    <!-- Feedback Details Fieldset -->
+                    <fieldset>
+                        <legend>Feedback Details</legend>
+
+                        <div class="form-group">
+                            <label for="programme">Select Programme</label>
+                            <select id="programme" name="programme">
+                                <option value="">-- Choose a programme --</option>
+                                <option value="tree-planting">Campus Tree Planting Drive</option>
+                                <option value="zero-waste">Zero Waste Challenge</option>
+                                <option value="green-commute">Green Commute Initiative</option>
+                                <option value="climate-research">Climate Research Volunteers</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="feedbackType">Feedback Type</label>
+                            <select id="feedbackType" name="feedbackType" multiple size="3">
+                                <option value="suggestion">Suggestion</option>
+                                <option value="compliment">Compliment</option>
+                                <option value="issue">Report an Issue</option>
+                                <option value="question">General Question</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="referral">How did you hear about us?</label>
+                            <input type="text" list="referralSources" id="referral" name="referral" placeholder="Start typing...">
+                            <datalist id="referralSources">
+                                <option value="University Website">
+                                <option value="Social Media">
+                                <option value="Friend or Classmate">
+                                <option value="Lecture or Seminar">
+                                <option value="Student Union">
+                                <option value="Poster / Flyer">
+                            </datalist>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="visitDate">Date of Visit/Participation</label>
+                            <input type="date" id="visitDate" name="visitDate">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="visitDateTime">Preferred Contact Date &amp; Time</label>
+                            <input type="datetime-local" id="visitDateTime" name="visitDateTime">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Your Message <span style="color:#d32f2f;">*</span></label>
+                            <textarea id="message" name="message" rows="5" maxlength="500" required placeholder="Write your feedback here (max 500 characters)"></textarea>
+                            <div class="char-counter" id="charCounter">500 characters remaining</div>
+                            <span class="error-message" id="messageError">Please enter your feedback message.</span>
+                        </div>
+                    </fieldset>
+
+                    <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                </form>
+
+                <!-- Confirmation Message (shown after successful submission) -->
+                <div class="confirmation-msg" id="confirmationMsg">
+                    <h3>✅ Thank You for Your Feedback!</h3>
+                    <p>Your feedback has been received successfully. We appreciate your contribution to improving our climate action programmes.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- ====== FOOTER ====== -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>ClimAct</h4>
+                    <p>A student-built website dedicated to SDG 13: Climate Action.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="ais.html">Action Simulator</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>More</h4>
+                    <ul class="footer-links">
+                        <li><a href="team.html">Meet the Team</a></li>
+                        <li><a href="profile.html">User Profile</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Page Info</h4>
+                    <ul class="footer-links">
+                        <li><a href="pageEditor_ST3.html" target="_blank">Page Editor (James Chen)</a></li>
+                        <li><a href="validation_ST3.html" target="_blank">Validation Report</a></li>
+                        <li><a href="#">Accessibility Statement</a></li>
+                    </ul>
+                    <p style="margin-top: 0.5rem; font-size: 0.8rem;">Student 3: James Chen</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ClimAct | SDG 13: Climate Action | University of Westminster</p>
+                <p>All images sourced from Unsplash (royalty-free).</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====== JAVASCRIPT: Form Interactivity ====== -->
+    <script>
+        /* ============================================
+           Live Character Counter
+           Updates remaining character count as user types
+           in the message textarea. Max length is 500.
+           ============================================ */
+        var messageInput = document.getElementById('message');
+        var charCounter = document.getElementById('charCounter');
+        var maxLength = 500;
+
+        messageInput.addEventListener('input', function() {
+            var remaining = maxLength - this.value.length;
+            charCounter.textContent = remaining + ' characters remaining';
+
+            /* Change colour based on remaining characters */
+            charCounter.classList.remove('warning', 'danger');
+            if (remaining <= 50 && remaining > 20) {
+                charCounter.classList.add('warning');
+            } else if (remaining <= 20) {
+                charCounter.classList.add('danger');
+            }
+        });
+
+        /* ============================================
+           Form Validation
+           Validates required fields on form submit.
+           Displays error messages near relevant fields.
+           ============================================ */
+        var form = document.getElementById('feedbackForm');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            /* Reset all previous error states */
+            var errorGroups = document.querySelectorAll('.form-group.error');
+            errorGroups.forEach(function(group) {
+                group.classList.remove('error');
+            });
+
+            var isValid = true;
+
+            /* Validate Full Name */
+            var fullName = document.getElementById('fullName');
+            if (fullName.value.trim() === '') {
+                fullName.parentElement.classList.add('error');
+                isValid = false;
+            }
+
+            /* Validate Email */
+            var email = document.getElementById('email');
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email.value.trim() === '' || !emailPattern.test(email.value)) {
+                email.parentElement.classList.add('error');
+                isValid = false;
+            }
+
+            /* Validate Telephone (if provided, check format) */
+            var telephone = document.getElementById('telephone');
+            if (telephone.value.trim() !== '') {
+                var telPattern = /^[\+]?[(]?[0-9]{1,4}[)]?[-\s\./0-9]*$/;
+                if (!telPattern.test(telephone.value)) {
+                    telephone.parentElement.classList.add('error');
+                    isValid = false;
+                }
+            }
+
+            /* Validate Message */
+            var message = document.getElementById('message');
+            if (message.value.trim() === '') {
+                message.parentElement.classList.add('error');
+                isValid = false;
+            }
+
+            /* If form is valid, show confirmation */
+            if (isValid) {
+                /* Hide the form */
+                form.style.display = 'none';
+                /* Show confirmation message */
+                document.getElementById('confirmationMsg').style.display = 'block';
+                /* Scroll to confirmation */
+                document.getElementById('confirmationMsg').scrollIntoView({ behavior: 'smooth' });
+            } else {
+                /* Scroll to first error */
+                var firstError = document.querySelector('.form-group.error');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        });
+
+        /* Clear error state when user starts typing in a field */
+        var formInputs = form.querySelectorAll('input, textarea');
+        formInputs.forEach(function(input) {
+            input.addEventListener('input', function() {
+                this.parentElement.classList.remove('error');
+            });
+        });
+    </script>
+</body>
+</html>

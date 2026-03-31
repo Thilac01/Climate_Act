@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--
+    Content Page - Student 2 (Maria Garcia)
+    Topic: Sustainable Transport
+    ClimAct: Climate Action Website | SDG 13
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sustainable Transport - How greener travel choices can reduce carbon emissions and combat climate change.">
+    <title>ClimAct | Sustainable Transport</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .content-nav { background: var(--surface); border-radius: var(--radius-md); padding: 1.2rem; margin-bottom: var(--space-xl); box-shadow: var(--shadow-sm); }
+        .content-nav h3 { font-size: 1rem; margin-bottom: 0.8rem; }
+        .content-nav ul { list-style: none; padding: 0; }
+        .content-nav ul li { margin-bottom: 0.3rem; }
+        .content-nav ul li a { font-size: 0.85rem; color: var(--primary); padding: 0.3rem 0.5rem; display: block; border-radius: var(--radius-sm); transition: background 0.2s; }
+        .content-nav ul li a:hover { background: #e8f5e9; }
+        .content-section { margin-bottom: var(--space-2xl); }
+        .content-section img { border-radius: var(--radius-md); box-shadow: var(--shadow-md); margin: var(--space-md) 0; width: 100%; max-height: 400px; object-fit: cover; }
+        .go-top { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; text-decoration: none; box-shadow: var(--shadow-lg); z-index: 500; transition: transform 0.3s ease; }
+        .go-top:hover { transform: translateY(-3px); color: #fff; }
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <svg width="45" height="45" viewBox="0 0 45 45" aria-label="ClimAct Logo"><circle cx="22.5" cy="22.5" r="22" fill="#FF9800"/><text x="22.5" y="28" text-anchor="middle" fill="#1B5E20" font-size="20" font-weight="bold">🌍</text></svg>
+                <div><p class="site-title">ClimAct</p><p class="site-tagline">SDG 13 · Climate Action</p></div>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle navigation menu" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
+            <nav><ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="ais.html">Action Simulator</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="profile.html">User Profile</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="sitemap.html">Sitemap</a></li>
+            </ul></nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Sustainable Transport</h1>
+            <p>Reducing carbon emissions through greener travel choices is one of the most impactful actions individuals can take against climate change.</p>
+
+            <nav class="content-nav" aria-label="Page sections">
+                <h3>📖 On This Page</h3>
+                <ul>
+                    <li><a href="#problem">The Transport Problem</a></li>
+                    <li><a href="#cycling">Cycling &amp; Walking</a></li>
+                    <li><a href="#public">Public Transport</a></li>
+                    <li><a href="#electric">Electric Vehicles</a></li>
+                    <li><a href="#tips">Student Travel Tips</a></li>
+                </ul>
+            </nav>
+
+            <section id="problem" class="content-section">
+                <h2>🚗 The Transport Problem</h2>
+                <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&q=80" alt="Traffic congestion in a city centre contributing to air pollution and carbon emissions">
+                <p>Transport accounts for approximately 27% of the UK's greenhouse gas emissions, making it the largest emitting sector. Globally, the transport sector is responsible for about 16% of all carbon dioxide emissions. Cars, vans, and lorries are the primary contributors, with aviation and shipping also playing significant roles.</p>
+                <p>The reliance on fossil-fuel powered vehicles in urban areas not only drives climate change but also causes severe air pollution, contributing to over 36,000 premature deaths annually in the UK alone. Cities experience traffic congestion that wastes billions of hours of productivity while continuously pumping pollutants into the atmosphere.</p>
+            </section>
+
+            <section id="cycling" class="content-section">
+                <h2>🚲 Cycling &amp; Walking</h2>
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80" alt="Person cycling on a dedicated bike lane as a sustainable transport option">
+                <p>Active travel — walking and cycling — produces zero emissions and provides significant health benefits. Cities that invest in cycling infrastructure, such as Amsterdam and Copenhagen, have seen substantial reductions in traffic congestion, air pollution, and carbon emissions. The UK government has committed billions to improving cycling and walking infrastructure through its Active Travel England initiative.</p>
+                <p>For students, cycling is often the most practical and affordable mode of transport. Many universities offer bike-sharing schemes, secure storage facilities, and subsidised cycle-to-work programmes. A typical 5-mile cycle commute can save approximately 1,500 kg of CO2 per year compared to the same journey by car.</p>
+            </section>
+
+            <section id="public" class="content-section">
+                <h2>🚌 Public Transport</h2>
+                <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80" alt="A modern bus providing efficient public transport services">
+                <p>Buses, trams, and trains are substantially more efficient than private cars per passenger-kilometre. A full bus can replace up to 40 individual car journeys, dramatically reducing emissions, congestion, and road wear. Rail transport is particularly efficient, producing approximately 70% less CO2 per passenger-kilometre than cars.</p>
+                <p>Many UK cities are transitioning their bus fleets to electric or hydrogen-powered vehicles. London's ULEZ (Ultra Low Emission Zone) scheme has already reduced roadside nitrogen dioxide concentrations by 46% in central London, demonstrating how transport policy can deliver rapid environmental improvements.</p>
+            </section>
+
+            <section id="electric" class="content-section">
+                <h2>⚡ Electric Vehicles</h2>
+                <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&q=80" alt="Electric car being charged at a public charging station">
+                <p>Electric vehicles (EVs) produce zero tailpipe emissions and are increasingly powered by renewable electricity. When charged using clean energy, EVs can reduce lifetime emissions by over 70% compared to conventional petrol or diesel vehicles. The UK government has committed to banning the sale of new petrol and diesel cars by 2035.</p>
+                <p>The EV market is growing rapidly, with new models becoming more affordable, offering longer ranges, and supported by an expanding charging network. Over 50,000 public charging points are now available across the UK, with plans to install hundreds of thousands more by 2030.</p>
+            </section>
+
+            <section id="tips" class="content-section">
+                <h2>🎓 Student Travel Tips</h2>
+                <p>As a student, you can make a real difference by adopting sustainable travel habits:</p>
+                <ul>
+                    <li><strong>Walk or cycle for short trips:</strong> Journeys under 2 miles are ideal for active travel.</li>
+                    <li><strong>Use railcards and student passes:</strong> Save money while travelling sustainably.</li>
+                    <li><strong>Carpool with classmates:</strong> Share rides to lectures, events, and placements.</li>
+                    <li><strong>Choose trains over flights:</strong> For domestic travel, rail is often comparable in time but far greener.</li>
+                    <li><strong>Plan ahead:</strong> Combine errands into single trips to reduce unnecessary journeys.</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <a href="#top" class="go-top" aria-label="Go to top of page">↑</a>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section"><h4>ClimAct</h4><p>SDG 13: Climate Action</p></div>
+                <div class="footer-section"><h4>Quick Links</h4><ul class="footer-links"><li><a href="home.html">Home</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="feedback.html">Feedback</a></li></ul></div>
+                <div class="footer-section"><h4>More</h4><ul class="footer-links"><li><a href="team.html">Team</a></li><li><a href="sitemap.html">Sitemap</a></li></ul></div>
+                <div class="footer-section"><h4>Page Info</h4><ul class="footer-links"><li><a href="pageEditor_ST2.html" target="_blank">Page Editor (Maria Garcia)</a></li><li><a href="validation_ST2.html" target="_blank">Validation</a></li></ul><p style="margin-top:0.5rem;font-size:0.8rem;">Student 2: Maria Garcia</p></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 ClimAct | University of Westminster</p></div>
+        </div>
+    </footer>
+</body>
+</html>

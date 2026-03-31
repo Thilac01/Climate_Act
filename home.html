@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<!--
+    Home Page - ClimAct: Climate Action Website
+    SDG 13 - Climate Action
+    Assigned to: Student 1 (Alex Johnson)
+    Description: Central entry point introducing the site's purpose
+    with mission cards and interactive gallery linking to content pages.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ClimAct Home - Discover how you can take action against climate change. SDG 13: Climate Action.">
+    <title>ClimAct | Home</title>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Page-Specific Embedded CSS for Home Page -->
+    <style>
+        /* ---- HOME PAGE EMBEDDED CSS ---- */
+        /* Rule 1: Hero section styling for the home page banner */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(27, 94, 32, 0.9), rgba(76, 175, 80, 0.8)),
+                         url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1920&q=80') center/cover no-repeat;
+            padding: 5rem 1.5rem;
+            text-align: center;
+            color: #ffffff;
+            border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .hero-section h1 {
+            color: #ffffff;
+            font-size: 3rem;
+            margin-bottom: var(--space-md);
+            text-shadow: 2px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-section p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto var(--space-xl);
+        }
+
+        /* Rule 2: Mission cards grid layout */
+        .mission-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-xl);
+            margin-bottom: var(--space-3xl);
+        }
+
+        .mission-card .card-body ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .mission-card .card-body ul li {
+            padding: 0.3rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        .mission-card .card-body ul li::before {
+            content: '🌱';
+            position: absolute;
+            left: 0;
+        }
+
+        /* Rule 3: Interactive gallery tile styling with animations */
+        .content-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+
+        .gallery-tile {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            height: 280px;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .gallery-tile:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .gallery-tile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-tile:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Rule 4: Gallery tile overlay with gradient and text */
+        .gallery-tile .tile-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 1.2rem 1.2rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+            color: #ffffff;
+            transition: padding 0.3s ease;
+        }
+
+        .gallery-tile:hover .tile-overlay {
+            padding-bottom: 1.8rem;
+        }
+
+        .tile-overlay h4 {
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .tile-overlay p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.8rem;
+            margin-bottom: 0;
+        }
+
+        /* Rule 5: Decorative badge for gallery tiles */
+        .tile-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+            color: #fff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 2px 8px rgba(255, 152, 0, 0.4);
+        }
+
+        /* Rule 6: CTA section styling */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: #ffffff;
+            padding: 3rem 2rem;
+            border-radius: var(--radius-xl);
+            text-align: center;
+            margin-top: var(--space-2xl);
+        }
+
+        .cta-section h2 {
+            color: #ffffff;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto var(--space-lg);
+        }
+
+        @media (max-width: 768px) {
+            .hero-section h1 { font-size: 2rem; }
+            .hero-section { padding: 3rem 1rem; }
+            .gallery-tile { height: 220px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- ====== HEADER WITH NAVIGATION ====== -->
+    <!-- DO NOT MODIFY: Shared header template -->
+    <header>
+        <div class="header-container">
+            <!-- Website Identity / Logo -->
+            <div class="logo-area">
+                <!-- Logo uses a leaf emoji as inline SVG alternative -->
+                <svg width="45" height="45" viewBox="0 0 45 45" aria-label="ClimAct Logo">
+                    <circle cx="22.5" cy="22.5" r="22" fill="#FF9800"/>
+                    <text x="22.5" y="28" text-anchor="middle" fill="#1B5E20" font-size="20" font-weight="bold">🌍</text>
+                </svg>
+                <div>
+                    <p class="site-title">ClimAct</p>
+                    <p class="site-tagline">SDG 13 · Climate Action</p>
+                </div>
+            </div>
+
+            <!-- Hamburger Menu Toggle -->
+            <button class="menu-toggle" aria-label="Toggle navigation menu" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
+
+            <!-- Navigation Bar -->
+            <nav>
+                <ul>
+                    <li><a href="home.html" class="active">Home</a></li>
+                    <li><a href="ais.html">Action Simulator</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="profile.html">User Profile</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="sitemap.html">Sitemap</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ====== MAIN CONTENT ====== -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1>Take Action for Our Planet</h1>
+            <p>Every action counts in the fight against climate change. Discover how individuals, communities, and students like you can make a real difference for SDG 13.</p>
+            <a href="ais.html" class="btn btn-secondary">Try the Action Simulator →</a>
+        </section>
+
+        <div class="container">
+            <!-- ====== MISSION CARDS SECTION ====== -->
+            <section class="mt-2">
+                <div class="section-title">
+                    <h2>Why Climate Action Matters</h2>
+                    <p>Understanding the urgency and taking steps towards a sustainable future</p>
+                </div>
+
+                <div class="mission-cards">
+                    <!-- Card 1: Why SDG 13 Matters -->
+                    <div class="card mission-card">
+                        <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=600&q=80" alt="Smoke rising from industrial chimneys highlighting the urgency of climate action">
+                        <div class="card-body">
+                            <h3>The Climate Crisis Is Now</h3>
+                            <p>Climate change affects every continent. Rising sea levels, extreme weather events, and biodiversity loss threaten communities worldwide — especially the most vulnerable.</p>
+                            <ul>
+                                <li>Reduce your carbon footprint daily</li>
+                                <li>Support renewable energy initiatives</li>
+                                <li>Advocate for climate-friendly policies</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Relevance to Students -->
+                    <div class="card mission-card">
+                        <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=600&q=80" alt="Students planting trees in a community garden as part of climate action">
+                        <div class="card-body">
+                            <h3>Students Leading Change</h3>
+                            <p>As future professionals and citizens, students have the power and creativity to drive sustainable change in their universities, communities, and beyond.</p>
+                            <ul>
+                                <li>Start campus sustainability projects</li>
+                                <li>Organise awareness campaigns</li>
+                                <li>Choose sustainable career paths</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Who Is It For -->
+                    <div class="card mission-card">
+                        <img src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?w=600&q=80" alt="A vibrant green valley with mountains showing the beauty of nature worth protecting">
+                        <div class="card-body">
+                            <h3>Everyone Can Contribute</h3>
+                            <p>Whether you're a student, a professional, or a concerned citizen — there are practical, achievable actions you can take every day to combat climate change.</p>
+                            <ul>
+                                <li>Practice sustainable consumption</li>
+                                <li>Educate others about climate science</li>
+                                <li>Support eco-friendly businesses</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ====== INTERACTIVE GALLERY - CONTENT PAGES ====== -->
+            <section class="mt-2">
+                <div class="section-title">
+                    <h2>Explore Our Focus Areas</h2>
+                    <p>Click on any topic to dive deeper into specific climate action strategies</p>
+                </div>
+
+                <div class="content-gallery">
+                    <!-- Content Page - Student 1: Renewable Energy -->
+                    <a href="content_ST1.html" class="gallery-tile">
+                        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80" alt="Solar panels under a blue sky representing renewable energy solutions">
+                        <span class="tile-badge">Student 1</span>
+                        <div class="tile-overlay">
+                            <h4>Renewable Energy Solutions</h4>
+                            <p>Exploring solar, wind, and hydro power for a sustainable future</p>
+                        </div>
+                    </a>
+
+                    <!-- Content Page - Student 2: Sustainable Transport -->
+                    <a href="content_ST2.html" class="gallery-tile">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80" alt="Electric vehicles and bicycles promoting sustainable transportation">
+                        <span class="tile-badge">Student 2</span>
+                        <div class="tile-overlay">
+                            <h4>Sustainable Transport</h4>
+                            <p>Reducing emissions through greener travel choices</p>
+                        </div>
+                    </a>
+
+                    <!-- Content Page - Student 3: Food & Agriculture -->
+                    <a href="content_ST3.html" class="gallery-tile">
+                        <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=600&q=80" alt="Organic farm with fresh vegetables representing sustainable agriculture">
+                        <span class="tile-badge">Student 3</span>
+                        <div class="tile-overlay">
+                            <h4>Sustainable Food &amp; Agriculture</h4>
+                            <p>How our food choices impact the planet</p>
+                        </div>
+                    </a>
+
+                    <!-- Content Page - Student 4: Green Living -->
+                    <a href="content_ST4.html" class="gallery-tile">
+                        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&q=80" alt="Eco-friendly home with plants representing green living lifestyle">
+                        <span class="tile-badge">Student 4</span>
+                        <div class="tile-overlay">
+                            <h4>Green Living at Home</h4>
+                            <p>Everyday habits that reduce your environmental footprint</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- ====== CTA SECTION ====== -->
+            <section class="cta-section">
+                <h2>Ready to Make an Impact?</h2>
+                <p>Use our Action Impact Simulator to discover how your daily choices can contribute to fighting climate change.</p>
+                <a href="ais.html" class="btn btn-secondary">Launch Simulator</a>
+            </section>
+        </div>
+    </main>
+
+    <!-- ====== FOOTER ====== -->
+    <!-- DO NOT MODIFY: Shared footer template -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <!-- Footer Section 1: About -->
+                <div class="footer-section">
+                    <h4>ClimAct</h4>
+                    <p>A student-built website dedicated to SDG 13: Climate Action. Inspiring meaningful change through education and action.</p>
+                </div>
+                <!-- Footer Section 2: Quick Links -->
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="ais.html">Action Simulator</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </div>
+                <!-- Footer Section 3: Team & More -->
+                <div class="footer-section">
+                    <h4>More</h4>
+                    <ul class="footer-links">
+                        <li><a href="team.html">Meet the Team</a></li>
+                        <li><a href="profile.html">User Profile</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+                <!-- Footer Section 4: Page Editor & Validation -->
+                <div class="footer-section">
+                    <h4>Page Info</h4>
+                    <ul class="footer-links">
+                        <li><a href="pageEditor_ST1.html" target="_blank">Page Editor (Alex Johnson)</a></li>
+                        <li><a href="validation_ST1.html" target="_blank">Validation Report</a></li>
+                        <li><a href="#">Accessibility Statement</a></li>
+                    </ul>
+                    <p style="margin-top: 0.5rem; font-size: 0.8rem;">Student 1: Alex Johnson</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ClimAct | SDG 13: Climate Action | University of Westminster</p>
+                <p>All images sourced from Unsplash (royalty-free). Content is original and created for educational purposes only.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

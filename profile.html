@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<!--
+    User Profile Page - ClimAct: Climate Action Website
+    SDG 13 - Climate Action
+    Assigned to: Student 4 (Sarah Williams)
+    Description: Progressive profile builder using JavaScript prompts.
+    Collects user data step-by-step, displays profile dynamically,
+    tracks completion percentage, and allows revisiting skipped steps.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ClimAct User Profile - Build your climate action profile progressively.">
+    <title>ClimAct | User Profile</title>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Page-Specific Embedded CSS -->
+    <style>
+        /* ---- PROFILE PAGE EMBEDDED CSS ---- */
+        .profile-hero {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-radius: var(--radius-xl);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .profile-hero p {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Control buttons area */
+        .profile-controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: var(--space-xl);
+            align-items: center;
+        }
+
+        /* Progress bar container */
+        .progress-container {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--space-xl);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .progress-header h3 {
+            margin-bottom: 0;
+            font-size: 1.1rem;
+        }
+
+        .progress-text {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            border-radius: 6px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        /* Step tabs */
+        .step-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+        }
+
+        .step-tab {
+            padding: 0.5rem 1.2rem;
+            background: #e0e0e0;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .step-tab.completed {
+            background: var(--primary-light);
+            color: #fff;
+        }
+
+        .step-tab.active-step {
+            background: var(--primary-dark);
+            color: #fff;
+        }
+
+        .step-tab:hover {
+            opacity: 0.85;
+        }
+
+        /* Status message */
+        .status-message {
+            background: var(--surface);
+            border-left: 4px solid var(--primary);
+            padding: 1rem 1.5rem;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            margin-bottom: var(--space-xl);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Revisit buttons */
+        .revisit-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: var(--space-xl);
+        }
+
+        .revisit-btn {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 2px solid var(--primary-light);
+            color: var(--primary);
+            border-radius: var(--radius-sm);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .revisit-btn:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* Profile output area */
+        .profile-output {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .profile-output h2 {
+            margin-bottom: var(--space-lg);
+        }
+
+        .profile-section {
+            display: none;
+            margin-bottom: var(--space-lg);
+            padding: 1.5rem;
+            background: var(--bg-primary);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--primary-light);
+        }
+
+        .profile-section.visible {
+            display: block;
+            animation: slideIn 0.4s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .profile-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary-dark);
+        }
+
+        .profile-field {
+            display: flex;
+            gap: 1rem;
+            padding: 0.4rem 0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .profile-field:last-child {
+            border-bottom: none;
+        }
+
+        .field-label {
+            font-weight: 600;
+            color: var(--text-primary);
+            min-width: 140px;
+        }
+
+        .field-value {
+            color: var(--text-secondary);
+        }
+
+        /* Confirmation section */
+        .confirmation-section {
+            display: none;
+            background: #e8f5e9;
+            border: 2px solid #4CAF50;
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: var(--space-lg);
+        }
+
+        .confirmation-section.visible {
+            display: block;
+        }
+
+        .confirmation-section h3 {
+            color: #2E7D32;
+        }
+
+        @media (max-width: 768px) {
+            .profile-field { flex-direction: column; gap: 0.2rem; }
+            .field-label { min-width: auto; }
+        }
+    </style>
+</head>
+<body>
+    <!-- ====== HEADER ====== -->
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <svg width="45" height="45" viewBox="0 0 45 45" aria-label="ClimAct Logo">
+                    <circle cx="22.5" cy="22.5" r="22" fill="#FF9800"/>
+                    <text x="22.5" y="28" text-anchor="middle" fill="#1B5E20" font-size="20" font-weight="bold">🌍</text>
+                </svg>
+                <div>
+                    <p class="site-title">ClimAct</p>
+                    <p class="site-tagline">SDG 13 · Climate Action</p>
+                </div>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle navigation menu" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="ais.html">Action Simulator</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="profile.html" class="active">User Profile</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="sitemap.html">Sitemap</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ====== MAIN CONTENT ====== -->
+    <main>
+        <div class="container">
+            <!-- Page Intro -->
+            <section class="profile-hero">
+                <h1>Progressive User Profile</h1>
+                <p>This page builds a user profile gradually using JavaScript prompts (no HTML forms). You can complete steps in order, skip questions, and revisit steps later to enrich your profile.</p>
+            </section>
+
+            <!-- Control Buttons -->
+            <div class="profile-controls">
+                <button class="btn btn-primary" id="startBtn">Start / Continue Profile</button>
+                <button class="btn btn-outline" id="resetBtn">Reset Profile</button>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-header">
+                    <h3>Completion: <span id="completionPercent">0%</span></h3>
+                    <span class="progress-text" id="promptCount">(0/9 prompts completed)</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+            <!-- Step Tabs -->
+            <div class="step-tabs">
+                <span>Steps:</span>
+                <button class="step-tab" id="tab-step1">Step 1: Basics</button>
+                <button class="step-tab" id="tab-step2">Step 2: Interests</button>
+                <button class="step-tab" id="tab-step3">Step 3: Actions</button>
+            </div>
+
+            <!-- Status Message -->
+            <div class="status-message" id="statusMessage">
+                Status: Click "Start / Continue Profile" to begin building your profile.
+            </div>
+
+            <!-- Revisit Buttons -->
+            <div class="revisit-buttons">
+                <button class="revisit-btn" id="revisitStep1">Revisit Step 1</button>
+                <button class="revisit-btn" id="revisitStep2">Revisit Step 2</button>
+                <button class="revisit-btn" id="revisitStep3">Revisit Step 3</button>
+            </div>
+
+            <!-- Profile Output Area (hidden initially, revealed progressively) -->
+            <div class="profile-output">
+                <h2>Your Profile (Updates Progressively)</h2>
+
+                <!-- Step 1: Basic Details Section -->
+                <div class="profile-section" id="section-step1">
+                    <h3>Step 1: Basics</h3>
+                    <div id="step1-fields"></div>
+                </div>
+
+                <!-- Step 2: Interests Section -->
+                <div class="profile-section" id="section-step2">
+                    <h3>Step 2: Interests</h3>
+                    <div id="step2-fields"></div>
+                </div>
+
+                <!-- Step 3: Actions Section -->
+                <div class="profile-section" id="section-step3">
+                    <h3>Step 3: Actions</h3>
+                    <div id="step3-fields"></div>
+                </div>
+
+                <!-- Confirmation -->
+                <div class="confirmation-section" id="confirmationSection">
+                    <h3>🎉 Profile Complete!</h3>
+                    <p>When you complete all steps, you'll see a confirmation message here.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ====== FOOTER ====== -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>ClimAct</h4>
+                    <p>A student-built website dedicated to SDG 13: Climate Action.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="ais.html">Action Simulator</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>More</h4>
+                    <ul class="footer-links">
+                        <li><a href="team.html">Meet the Team</a></li>
+                        <li><a href="profile.html">User Profile</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Page Info</h4>
+                    <ul class="footer-links">
+                        <li><a href="pageEditor_ST4.html" target="_blank">Page Editor (Sarah Williams)</a></li>
+                        <li><a href="validation_ST4.html" target="_blank">Validation Report</a></li>
+                        <li><a href="#">Accessibility Statement</a></li>
+                    </ul>
+                    <p style="margin-top: 0.5rem; font-size: 0.8rem;">Student 4: Sarah Williams</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ClimAct | SDG 13: Climate Action | University of Westminster</p>
+                <p>All images sourced from Unsplash (royalty-free).</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====== JAVASCRIPT: Progressive Profile Builder ====== -->
+    <script>
+        /* ============================================
+           Profile Data Object
+           Stores all user profile information collected
+           through JavaScript prompts.
+           ============================================ */
+        var profileData = {
+            /* Step 1: Basic Details (3 prompts) */
+            name: null,
+            username: null,
+            localArea: null,
+            /* Step 2: Interests (3 prompts) */
+            sdgInterest: null,
+            preferredContent: null,
+            weeklyTime: null,
+            /* Step 3: Actions (3 prompts) */
+            currentAction: null,
+            futureGoal: null,
+            pledgeMessage: null
+        };
+
+        /* Step definitions with prompt text and data keys */
+        var steps = [
+            {
+                name: 'Step 1: Basics',
+                id: 'step1',
+                prompts: [
+                    { key: 'name', question: 'Step 1/3 — What is your name? (Leave blank to skip)' },
+                    { key: 'username', question: 'Step 1/3 — Choose a username: (Leave blank to skip)' },
+                    { key: 'localArea', question: 'Step 1/3 — What is your local area/city? (Leave blank to skip)' }
+                ]
+            },
+            {
+                name: 'Step 2: Interests',
+                id: 'step2',
+                prompts: [
+                    { key: 'sdgInterest', question: 'Step 2/3 — Which SDG topic interests you most? (e.g. climate, health, education) (Leave blank to skip)' },
+                    { key: 'preferredContent', question: 'Step 2/3 — What type of content do you prefer? (e.g. video, articles, podcast) (Leave blank to skip)' },
+                    { key: 'weeklyTime', question: 'Step 2/3 — How much time per week can you dedicate? (e.g. 30mins, 2hours) (Leave blank to skip)' }
+                ]
+            },
+            {
+                name: 'Step 3: Actions',
+                id: 'step3',
+                prompts: [
+                    { key: 'currentAction', question: 'Step 3/3 — What climate action are you currently taking? (Leave blank to skip)' },
+                    { key: 'futureGoal', question: 'Step 3/3 — What is your next sustainability goal? (Leave blank to skip)' },
+                    { key: 'pledgeMessage', question: 'Step 3/3 — Write a personal climate pledge: (Leave blank to skip)' }
+                ]
+            }
+        ];
+
+        /* Track which step to run next */
+        var currentStepIndex = 0;
+        var totalPrompts = 9;
+
+        /* ============================================
+           Function: runStep
+           Runs all prompts for a given step index.
+           Allows skipping individual prompts.
+           ============================================ */
+        function runStep(stepIndex) {
+            var step = steps[stepIndex];
+            if (!step) return;
+
+            /* Highlight active tab */
+            updateTabs(stepIndex);
+
+            /* Loop through each prompt in the step */
+            for (var i = 0; i < step.prompts.length; i++) {
+                var promptObj = step.prompts[i];
+                var answer = prompt(promptObj.question);
+
+                /* If user cancels prompt, treat as skip */
+                if (answer === null || answer.trim() === '') {
+                    /* Skipped - keep as null or leave existing value */
+                    /* Only clear if not revisiting */
+                    if (profileData[promptObj.key] === null) {
+                        profileData[promptObj.key] = null;
+                    }
+                } else {
+                    profileData[promptObj.key] = answer.trim();
+                }
+            }
+
+            /* Update the profile display */
+            renderStepSection(stepIndex);
+            updateProgress();
+            updateStatus();
+        }
+
+        /* ============================================
+           Function: renderStepSection
+           Dynamically updates the DOM to display
+           profile data for a completed step.
+           ============================================ */
+        function renderStepSection(stepIndex) {
+            var step = steps[stepIndex];
+            var sectionEl = document.getElementById('section-' + step.id);
+            var fieldsEl = document.getElementById(step.id + '-fields');
+
+            /* Clear existing fields */
+            fieldsEl.innerHTML = '';
+
+            /* Check if step has any data */
+            var hasData = false;
+
+            step.prompts.forEach(function(promptObj) {
+                var value = profileData[promptObj.key];
+                if (value !== null && value !== '') {
+                    hasData = true;
+                    /* Create field display */
+                    var fieldDiv = document.createElement('div');
+                    fieldDiv.className = 'profile-field';
+
+                    var labelSpan = document.createElement('span');
+                    labelSpan.className = 'field-label';
+                    /* Create readable label from key */
+                    labelSpan.textContent = formatLabel(promptObj.key) + ':';
+
+                    var valueSpan = document.createElement('span');
+                    valueSpan.className = 'field-value';
+                    valueSpan.textContent = value;
+
+                    fieldDiv.appendChild(labelSpan);
+                    fieldDiv.appendChild(valueSpan);
+                    fieldsEl.appendChild(fieldDiv);
+                }
+            });
+
+            /* Show section if it has data */
+            if (hasData) {
+                sectionEl.classList.add('visible');
+            }
+        }
+
+        /* ============================================
+           Function: formatLabel
+           Converts camelCase key to readable label
+           ============================================ */
+        function formatLabel(key) {
+            var labels = {
+                name: 'Name',
+                username: 'Username',
+                localArea: 'Local area',
+                sdgInterest: 'SDG interest',
+                preferredContent: 'Preferred content',
+                weeklyTime: 'Weekly time',
+                currentAction: 'Current action',
+                futureGoal: 'Future goal',
+                pledgeMessage: 'Climate pledge'
+            };
+            return labels[key] || key;
+        }
+
+        /* ============================================
+           Function: updateProgress
+           Calculates and updates the progress bar
+           and completion percentage.
+           ============================================ */
+        function updateProgress() {
+            var completed = 0;
+            var keys = Object.keys(profileData);
+            keys.forEach(function(key) {
+                if (profileData[key] !== null && profileData[key] !== '') {
+                    completed++;
+                }
+            });
+
+            var percentage = Math.round((completed / totalPrompts) * 100);
+
+            document.getElementById('completionPercent').textContent = percentage + '%';
+            document.getElementById('progressFill').style.width = percentage + '%';
+            document.getElementById('promptCount').textContent = '(' + completed + '/' + totalPrompts + ' prompts completed)';
+
+            /* Check if fully complete */
+            if (completed === totalPrompts) {
+                document.getElementById('confirmationSection').classList.add('visible');
+            } else {
+                document.getElementById('confirmationSection').classList.remove('visible');
+            }
+        }
+
+        /* ============================================
+           Function: updateTabs
+           Updates tab styling to show step states
+           ============================================ */
+        function updateTabs(activeIndex) {
+            steps.forEach(function(step, index) {
+                var tab = document.getElementById('tab-' + step.id);
+                tab.classList.remove('active-step', 'completed');
+
+                /* Check if step has any completed data */
+                var hasData = step.prompts.some(function(p) {
+                    return profileData[p.key] !== null && profileData[p.key] !== '';
+                });
+
+                if (index === activeIndex) {
+                    tab.classList.add('active-step');
+                } else if (hasData) {
+                    tab.classList.add('completed');
+                }
+            });
+        }
+
+        /* ============================================
+           Function: updateStatus
+           Updates the status message area
+           ============================================ */
+        function updateStatus() {
+            var completed = 0;
+            Object.keys(profileData).forEach(function(key) {
+                if (profileData[key] !== null && profileData[key] !== '') {
+                    completed++;
+                }
+            });
+
+            var percentage = Math.round((completed / totalPrompts) * 100);
+            var statusEl = document.getElementById('statusMessage');
+
+            if (percentage === 100) {
+                statusEl.textContent = 'Status: Profile complete! 🎉 All prompts have been answered.';
+            } else if (completed > 0) {
+                statusEl.textContent = 'Status: Saved. Completion is now ' + percentage + '%. You may continue or revisit any step.';
+            } else {
+                statusEl.textContent = 'Status: Click "Start / Continue Profile" to begin building your profile.';
+            }
+        }
+
+        /* ============================================
+           Event Listeners
+           ============================================ */
+
+        /* Start / Continue Profile button */
+        document.getElementById('startBtn').addEventListener('click', function() {
+            /* Find next incomplete step or start from beginning */
+            var stepToRun = 0;
+            for (var i = 0; i < steps.length; i++) {
+                var allCompleted = steps[i].prompts.every(function(p) {
+                    return profileData[p.key] !== null && profileData[p.key] !== '';
+                });
+                if (!allCompleted) {
+                    stepToRun = i;
+                    break;
+                }
+                if (i === steps.length - 1) {
+                    stepToRun = 0; /* All done, restart from beginning */
+                }
+            }
+            runStep(stepToRun);
+
+            /* Continue to next steps if more exist */
+            for (var j = stepToRun + 1; j < steps.length; j++) {
+                var shouldContinue = confirm('Continue to ' + steps[j].name + '?');
+                if (shouldContinue) {
+                    runStep(j);
+                } else {
+                    break;
+                }
+            }
+        });
+
+        /* Reset Profile button */
+        document.getElementById('resetBtn').addEventListener('click', function() {
+            if (confirm('Are you sure you want to reset your profile? All data will be lost.')) {
+                Object.keys(profileData).forEach(function(key) {
+                    profileData[key] = null;
+                });
+
+                /* Hide all sections */
+                steps.forEach(function(step) {
+                    document.getElementById('section-' + step.id).classList.remove('visible');
+                    document.getElementById(step.id + '-fields').innerHTML = '';
+                    document.getElementById('tab-' + step.id).classList.remove('active-step', 'completed');
+                });
+
+                document.getElementById('confirmationSection').classList.remove('visible');
+                updateProgress();
+                updateStatus();
+            }
+        });
+
+        /* Revisit Step buttons - allow returning to skipped steps */
+        document.getElementById('revisitStep1').addEventListener('click', function() {
+            runStep(0);
+        });
+
+        document.getElementById('revisitStep2').addEventListener('click', function() {
+            runStep(1);
+        });
+
+        document.getElementById('revisitStep3').addEventListener('click', function() {
+            runStep(2);
+        });
+
+        /* Step tab clicks */
+        document.getElementById('tab-step1').addEventListener('click', function() { runStep(0); });
+        document.getElementById('tab-step2').addEventListener('click', function() { runStep(1); });
+        document.getElementById('tab-step3').addEventListener('click', function() { runStep(2); });
+    </script>
+</body>
+</html>

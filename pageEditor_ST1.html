@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!--
+    Page Editor Report - Student 1 (Alex Johnson)
+    ClimAct: Climate Action Website | SDG 13
+    Description: Describes the completed tasks, provides links to pages,
+    and includes internal links for easy navigation within this report.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page Editor Report for Student 1 - Alex Johnson. Describes contributions to the ClimAct website.">
+    <title>ClimAct | Page Editor - Alex Johnson (ST1)</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .editor-hero { text-align: center; padding: 2rem 1.5rem; background: linear-gradient(135deg, #FF9800, #FFB74D); border-radius: var(--radius-xl); margin-bottom: var(--space-2xl); color: #fff; }
+        .editor-hero h1 { color: #fff; }
+        .editor-hero p { color: rgba(255,255,255,0.9); }
+        .editor-nav { background: var(--surface); border-radius: var(--radius-md); padding: 1.2rem; margin-bottom: var(--space-xl); box-shadow: var(--shadow-sm); }
+        .editor-nav ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .editor-nav ul li a { font-size: 0.85rem; color: var(--primary); padding: 0.4rem 0.8rem; display: block; border-radius: var(--radius-sm); transition: background 0.2s; border: 1px solid var(--primary-light); }
+        .editor-nav ul li a:hover { background: #e8f5e9; }
+        .page-report { background: var(--surface); border-radius: var(--radius-lg); padding: 2rem; margin-bottom: var(--space-xl); box-shadow: var(--shadow-md); border-left: 4px solid var(--primary); }
+        .page-report h2 { margin-bottom: 0.8rem; }
+        .page-report h3 { font-size: 1rem; margin-top: 1rem; margin-bottom: 0.5rem; color: var(--primary-dark); }
+        .page-report p { font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .page-link { display: inline-block; margin-top: 0.5rem; padding: 0.4rem 1rem; background: var(--primary-light); color: #fff; border-radius: var(--radius-sm); font-size: 0.85rem; text-decoration: none; }
+        .page-link:hover { background: var(--primary); color: #fff; }
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <svg width="45" height="45" viewBox="0 0 45 45" aria-label="ClimAct Logo"><circle cx="22.5" cy="22.5" r="22" fill="#FF9800"/><text x="22.5" y="28" text-anchor="middle" fill="#1B5E20" font-size="20" font-weight="bold">🌍</text></svg>
+                <div><p class="site-title">ClimAct</p><p class="site-tagline">SDG 13 · Climate Action</p></div>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle navigation menu" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
+            <nav><ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="ais.html">Action Simulator</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="profile.html">User Profile</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="sitemap.html">Sitemap</a></li>
+            </ul></nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="editor-hero">
+                <h1>Alex Johnson's Editor Page</h1>
+                <p>Student 1 — Template &amp; Home Page Lead</p>
+            </section>
+
+            <nav class="editor-nav" aria-label="Internal page links">
+                <ul>
+                    <li><a href="#template">Shared Template</a></li>
+                    <li><a href="#home">Home Page</a></li>
+                    <li><a href="#gallery">Gallery Page</a></li>
+                    <li><a href="#content">Content Page</a></li>
+                    <li><a href="#editor">Editor Page</a></li>
+                </ul>
+            </nav>
+
+            <!-- Shared Template & CSS -->
+            <div class="page-report" id="template">
+                <h2>Shared HTML Template &amp; Global CSS</h2>
+                <h3>Description</h3>
+                <p>The Shared Template is the foundation used across all website pages. It includes the consistent header with the ClimAct logo, navigation bar with responsive mobile menu, and footer with quick links, contact sections, and page information. The global CSS file (<code>style.css</code>) implements a complete design system with CSS custom properties for colours, typography, spacing, shadows, and responsive breakpoints.</p>
+                <h3>Technical Details</h3>
+                <p><strong>Header:</strong> The header features a sticky navigation bar with a custom SVG logo, site title and tagline, and a hamburger menu button for mobile viewports. The mobile menu uses JavaScript to toggle a CSS class that reveals the nav links in a vertical dropdown.</p>
+                <p><strong>Footer:</strong> The footer uses a CSS Grid layout with four equal-width sections. On mobile (below 768px), it collapses to a single-column layout. Each section contains a heading and a list of links or information.</p>
+                <p><strong>CSS Architecture:</strong> The stylesheet uses CSS custom properties (variables) for all design tokens including colours, spacing, border-radius values, shadows, and font stacks. This ensures visual consistency and easy theme modifications. Responsive design uses three breakpoints: 992px, 768px, and 480px.</p>
+                <a href="style.css" class="page-link" target="_blank">View Global CSS →</a>
+            </div>
+
+            <!-- Home Page -->
+            <div class="page-report" id="home">
+                <h2>Home Page (home.html)</h2>
+                <h3>Description</h3>
+                <p>The Home Page serves as the main entry point of the website. It features a full-width hero section with a background image, headline, and call-to-action button. Below the hero are three mission cards highlighting key aspects of SDG 13. An interactive content gallery section displays four click-able cards, one for each student's content page, with images and descriptive text.</p>
+                <h3>Technical Details</h3>
+                <p><strong>Hero Section:</strong> Uses a CSS background image with overlay gradient, centred text, and responsive sizing. The hero adapts to all screen sizes using relative units and flexible padding.</p>
+                <p><strong>Mission Cards:</strong> Implemented using CSS Grid with auto-fill and minmax for responsive columns. Each card includes hover effects (translateY and box-shadow transitions) for visual feedback. Cards display an emoji icon, heading, and paragraph.</p>
+                <p><strong>Content Gallery:</strong> Four cards linking to individual content pages. Each card has a large background image, an overlay with text, and smooth hover transitions for scaling and opacity changes.</p>
+                <a href="home.html" class="page-link">View Home Page →</a>
+            </div>
+
+            <!-- Gallery Page -->
+            <div class="page-report" id="gallery">
+                <h2>Gallery Page (gallery.html)</h2>
+                <h3>Description</h3>
+                <p>The Gallery page features a dynamic, JavaScript-driven image gallery with climate action photographs. Users can click thumbnails to open an enlarged modal view with title, description, and source attribution. User customisation controls allow visitors to change the page background colour, text colour, and font family to suit their preferences.</p>
+                <h3>Technical Details</h3>
+                <p><strong>Thumbnail Grid:</strong> Uses CSS Grid with auto-fill columns. All image data (source, title, description, alt text) is stored in a JavaScript array and rendered dynamically using DOM manipulation. This avoids hardcoding image elements in HTML.</p>
+                <p><strong>Modal System:</strong> A full-screen modal overlay opens on thumbnail click. The modal displays the full-size image, title, caption, and photographer attribution. It closes via a close button, clicking outside the modal, or pressing the Escape key.</p>
+                <p><strong>Customisation Controls:</strong> Three input fields (background colour picker, text colour picker, and font family dropdown) allow users to personalise the page appearance in real-time using JavaScript event listeners that modify the document body's inline styles.</p>
+                <a href="gallery.html" class="page-link">View Gallery Page →</a>
+            </div>
+
+            <!-- Content Page -->
+            <div class="page-report" id="content">
+                <h2>Content Page (content_ST1.html)</h2>
+                <h3>Description</h3>
+                <p>The content page covers Renewable Energy Solutions as a key topic for climate action. It includes five detailed sections: Solar Energy, Wind Power, Hydroelectric Energy, Benefits of Renewables, and What Students Can Do. Each section features high-quality images with descriptive alt text.</p>
+                <h3>Technical Details</h3>
+                <p><strong>Internal Navigation:</strong> A navigation sidebar at the top provides anchor links to each section, allowing quick jumps to specific content areas. This uses standard HTML anchor references (href="#id").</p>
+                <p><strong>Go to Top Button:</strong> A fixed-position circular button with an arrow icon appears in the bottom-right corner, allowing users to instantly scroll back to the top of the page.</p>
+                <p><strong>Content Structure:</strong> Uses semantic HTML with proper heading hierarchy (h1 for page title, h2 for section headings, h3 for sub-sections). All images include descriptive alt attributes for accessibility.</p>
+                <a href="content_ST1.html" class="page-link">View Content Page →</a>
+            </div>
+
+            <!-- Editor Page -->
+            <div class="page-report" id="editor">
+                <h2>Editor Page (pageEditor_ST1.html)</h2>
+                <h3>Description</h3>
+                <p>This page (the one you are currently viewing) serves as a comprehensive report documenting all pages and features contributed by Student 1 (Alex Johnson). It includes descriptions, technical details, and direct links to each page. The page uses internal navigation for easy browsing.</p>
+                <a href="validation_ST1.html" class="page-link">View Validation Report →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section"><h4>ClimAct</h4><p>SDG 13: Climate Action</p></div>
+                <div class="footer-section"><h4>Links</h4><ul class="footer-links"><li><a href="home.html">Home</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="content_ST1.html">My Content</a></li></ul></div>
+                <div class="footer-section"><h4>Editors</h4><ul class="footer-links"><li><a href="pageEditor_ST1.html">Editor ST1</a></li><li><a href="pageEditor_ST2.html">Editor ST2</a></li><li><a href="pageEditor_ST3.html">Editor ST3</a></li><li><a href="pageEditor_ST4.html">Editor ST4</a></li></ul></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 ClimAct | University of Westminster</p></div>
+        </div>
+    </footer>
+</body>
+</html>

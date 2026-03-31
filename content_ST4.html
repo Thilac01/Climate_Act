@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--
+    Content Page - Student 4 (Sarah Williams)
+    Topic: Green Living at Home
+    ClimAct: Climate Action Website | SDG 13
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Green Living at Home - Everyday habits that reduce your environmental footprint.">
+    <title>ClimAct | Green Living</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .content-nav { background: var(--surface); border-radius: var(--radius-md); padding: 1.2rem; margin-bottom: var(--space-xl); box-shadow: var(--shadow-sm); }
+        .content-nav h3 { font-size: 1rem; margin-bottom: 0.8rem; }
+        .content-nav ul { list-style: none; padding: 0; }
+        .content-nav ul li { margin-bottom: 0.3rem; }
+        .content-nav ul li a { font-size: 0.85rem; color: var(--primary); padding: 0.3rem 0.5rem; display: block; border-radius: var(--radius-sm); transition: background 0.2s; }
+        .content-nav ul li a:hover { background: #e8f5e9; }
+        .content-section { margin-bottom: var(--space-2xl); }
+        .content-section img { border-radius: var(--radius-md); box-shadow: var(--shadow-md); margin: var(--space-md) 0; width: 100%; max-height: 400px; object-fit: cover; }
+        .go-top { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; text-decoration: none; box-shadow: var(--shadow-lg); z-index: 500; transition: transform 0.3s ease; }
+        .go-top:hover { transform: translateY(-3px); color: #fff; }
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <svg width="45" height="45" viewBox="0 0 45 45" aria-label="ClimAct Logo"><circle cx="22.5" cy="22.5" r="22" fill="#FF9800"/><text x="22.5" y="28" text-anchor="middle" fill="#1B5E20" font-size="20" font-weight="bold">🌍</text></svg>
+                <div><p class="site-title">ClimAct</p><p class="site-tagline">SDG 13 · Climate Action</p></div>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle navigation menu" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
+            <nav><ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="ais.html">Action Simulator</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="profile.html">User Profile</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="sitemap.html">Sitemap</a></li>
+            </ul></nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Green Living at Home</h1>
+            <p>Everyday habits and practical changes that can significantly reduce your environmental footprint and contribute to climate action.</p>
+
+            <nav class="content-nav" aria-label="Page sections">
+                <h3>📖 On This Page</h3>
+                <ul>
+                    <li><a href="#energy">Energy Efficiency</a></li>
+                    <li><a href="#water">Water Conservation</a></li>
+                    <li><a href="#reduce">Reduce, Reuse, Recycle</a></li>
+                    <li><a href="#shopping">Sustainable Shopping</a></li>
+                    <li><a href="#digital">Digital Carbon Footprint</a></li>
+                </ul>
+            </nav>
+
+            <section id="energy" class="content-section">
+                <h2>💡 Energy Efficiency at Home</h2>
+                <img src="https://images.unsplash.com/photo-1565814636199-ae8133055c1c?w=800&q=80" alt="LED light bulb representing energy-efficient home lighting solutions">
+                <p>Home energy use accounts for approximately 14% of the UK's greenhouse gas emissions. Improving energy efficiency is one of the easiest and most cost-effective ways to reduce your carbon footprint. Simple changes like switching to LED bulbs, which use 75% less energy than traditional incandescent lights, can save significant amounts of energy and money over time.</p>
+                <p>Insulating your home properly is one of the most impactful long-term investments for energy saving. Loft and wall insulation can reduce heat loss by up to 45%, while draught-proofing windows and doors prevents warm air from escaping. Smart thermostats and heating controls allow precise temperature management, ensuring heating is only used when and where it's needed.</p>
+                <h3>Quick Energy-Saving Tips</h3>
+                <ul>
+                    <li>Turn off lights when leaving a room</li>
+                    <li>Unplug chargers and appliances not in use</li>
+                    <li>Wash clothes at 30°C instead of higher temperatures</li>
+                    <li>Use a power strip to easily switch off multiple devices</li>
+                </ul>
+            </section>
+
+            <section id="water" class="content-section">
+                <h2>💧 Water Conservation</h2>
+                <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&q=80" alt="Clear flowing water representing the importance of water conservation">
+                <p>Water treatment and distribution require significant energy, meaning water conservation also reduces carbon emissions. The average person in the UK uses approximately 142 litres of water per day, much of which could be reduced through simple behavioural changes and efficient fixtures.</p>
+                <p>Reducing shower time by just 2 minutes can save up to 12 litres per shower. Installing low-flow showerheads and tap aerators can reduce water usage by 30-50% without noticeable impact on comfort. Fixing dripping taps promptly is also important — a single dripping tap can waste over 5,500 litres per year.</p>
+            </section>
+
+            <section id="reduce" class="content-section">
+                <h2>♻️ Reduce, Reuse, Recycle</h2>
+                <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=800&q=80" alt="Recycling bins and materials showing waste separation for sustainability">
+                <p>The traditional waste hierarchy — reduce, reuse, recycle — remains the most effective framework for minimising waste and its environmental impact. Reducing consumption is the most impactful step: every product not purchased means resources not extracted, energy not consumed, and waste not generated.</p>
+                <p>Reusing items extends their useful life and delays their entry into the waste stream. Charity shops, online marketplaces, and community swap events provide excellent opportunities to give and receive pre-owned goods. When items reach the end of their useful life, proper recycling ensures materials are recovered and reprocessed rather than being sent to landfill or incineration.</p>
+            </section>
+
+            <section id="shopping" class="content-section">
+                <h2>🛒 Sustainable Shopping</h2>
+                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80" alt="Eco-friendly reusable shopping bags with organic products">
+                <p>Every purchase is a vote for the kind of world we want to live in. Choosing products with minimal packaging, made from sustainable materials, and produced under fair working conditions can drive positive change throughout supply chains. Look for certifications such as Fairtrade, FSC (forestry), MSC (seafood), and organic labels.</p>
+                <p>Fast fashion is one of the most environmentally damaging industries, responsible for approximately 10% of global emissions. Choosing quality over quantity, supporting sustainable fashion brands, buying second-hand, and extending the life of your clothes through repairs and upcycling can significantly reduce your fashion footprint.</p>
+            </section>
+
+            <section id="digital" class="content-section">
+                <h2>📱 Digital Carbon Footprint</h2>
+                <p>Our digital lives also have environmental impacts that are often overlooked. Data centres, which power email, streaming, social media, and cloud storage, consume vast amounts of electricity and water. The digital sector now produces approximately 4% of global greenhouse gas emissions — more than the aviation industry.</p>
+                <p>Simple digital sustainability practices include:</p>
+                <ul>
+                    <li><strong>Delete unnecessary emails:</strong> Stored emails consume energy in data centres continuously.</li>
+                    <li><strong>Stream responsibly:</strong> Reduce video quality when full HD isn't needed.</li>
+                    <li><strong>Extend device life:</strong> Keep phones and laptops for longer before upgrading.</li>
+                    <li><strong>Use dark mode:</strong> On OLED screens, dark mode can reduce energy consumption by up to 60%.</li>
+                    <li><strong>Choose green web hosting:</strong> If building websites, select providers that use renewable energy.</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <a href="#top" class="go-top" aria-label="Go to top of page">↑</a>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section"><h4>ClimAct</h4><p>SDG 13: Climate Action</p></div>
+                <div class="footer-section"><h4>Quick Links</h4><ul class="footer-links"><li><a href="home.html">Home</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="feedback.html">Feedback</a></li></ul></div>
+                <div class="footer-section"><h4>More</h4><ul class="footer-links"><li><a href="team.html">Team</a></li><li><a href="sitemap.html">Sitemap</a></li></ul></div>
+                <div class="footer-section"><h4>Page Info</h4><ul class="footer-links"><li><a href="pageEditor_ST4.html" target="_blank">Page Editor (Sarah Williams)</a></li><li><a href="validation_ST4.html" target="_blank">Validation</a></li></ul><p style="margin-top:0.5rem;font-size:0.8rem;">Student 4: Sarah Williams</p></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 ClimAct | University of Westminster</p></div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<!--
+    Splash Screen - ClimAct: Climate Action Website
+    SDG 13 - Climate Action
+    Assigned to: Student 2 (Maria Garcia)
+    Description: First point of interaction for users.
+    Introduces the website purpose with auto-redirect to Home Page.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ClimAct - Taking Action Against Climate Change. A website dedicated to SDG 13: Climate Action.">
+    <title>ClimAct | Welcome</title>
+    <!-- Automatic redirect to home page after 4 seconds -->
+    <meta http-equiv="refresh" content="4;url=home.html">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ---- Splash Screen Styles ---- */
+        /* Consistent with the main website colour palette */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Full-screen background image */
+        .splash-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(135deg, 
+                    rgba(27, 94, 32, 0.85) 0%, 
+                    rgba(46, 125, 50, 0.75) 30%, 
+                    rgba(76, 175, 80, 0.65) 60%,
+                    rgba(255, 152, 0, 0.5) 100%),
+                url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&q=80') center/cover no-repeat;
+            z-index: -1;
+        }
+
+        /* Splash content container */
+        .splash-content {
+            text-align: center;
+            color: #ffffff;
+            max-width: 700px;
+            padding: 3rem 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* Fade in animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Website title */
+        .splash-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .splash-title span {
+            color: #FF9800;
+        }
+
+        /* Mission statement */
+        .splash-mission {
+            font-size: 1.2rem;
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Team members */
+        .splash-team {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .team-member {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        /* Countdown timer */
+        .countdown {
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #FF9800;
+            display: inline-block;
+            min-width: 2rem;
+        }
+
+        /* CSS Loader Animation */
+        .loader-container {
+            margin-bottom: 2rem;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-top: 4px solid #FF9800;
+            border-right: 4px solid #4CAF50;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        /* Spin animation for loader */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Progress bar */
+        .progress-bar-container {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #FF9800);
+            border-radius: 4px;
+            width: 0%;
+            animation: progressFill 4s linear forwards;
+        }
+
+        /* Progress bar fill animation */
+        @keyframes progressFill {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+
+        /* Skip button */
+        .skip-btn {
+            display: inline-block;
+            padding: 0.7rem 2rem;
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 30px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .skip-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.7);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* Floating particles animation */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float-up linear infinite;
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; width: 6px; height: 6px; }
+        .particle:nth-child(2) { left: 25%; animation-duration: 10s; animation-delay: 1s; width: 10px; height: 10px; }
+        .particle:nth-child(3) { left: 40%; animation-duration: 7s; animation-delay: 2s; width: 5px; height: 5px; }
+        .particle:nth-child(4) { left: 55%; animation-duration: 9s; animation-delay: 0.5s; width: 8px; height: 8px; }
+        .particle:nth-child(5) { left: 70%; animation-duration: 11s; animation-delay: 1.5s; width: 7px; height: 7px; }
+        .particle:nth-child(6) { left: 85%; animation-duration: 8s; animation-delay: 3s; width: 9px; height: 9px; }
+
+        /* Floating particle animation */
+        @keyframes float-up {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-10vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .splash-title {
+                font-size: 2.5rem;
+            }
+            .splash-mission {
+                font-size: 1rem;
+            }
+            .splash-team {
+                gap: 0.8rem;
+            }
+            .team-member {
+                font-size: 0.75rem;
+                padding: 0.4rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background image overlay -->
+    <div class="splash-bg" role="img" aria-label="Aerial view of a lush green forest representing climate action"></div>
+
+    <!-- Floating particles for visual effect -->
+    <div class="particles" aria-hidden="true">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Main Splash Content -->
+    <div class="splash-content">
+        <!-- Website Title -->
+        <h1 class="splash-title">Clim<span>Act</span></h1>
+
+        <!-- Website Mission (Brief) -->
+        <p class="splash-mission">
+            Empowering individuals and communities to take meaningful action
+            against climate change — because every choice matters for our planet's future.
+        </p>
+
+        <!-- Group Members -->
+        <div class="splash-team">
+            <span class="team-member">Alex Johnson</span>
+            <span class="team-member">Maria Garcia</span>
+            <span class="team-member">James Chen</span>
+            <span class="team-member">Sarah Williams</span>
+        </div>
+
+        <!-- CSS Loader Animation -->
+        <div class="loader-container">
+            <div class="loader" aria-label="Loading"></div>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill"></div>
+            </div>
+        </div>
+
+        <!-- Countdown Timer (updated by JavaScript) -->
+        <div class="countdown">
+            Entering site in <span class="countdown-number" id="countdown">4</span>
+        </div>
+
+        <!-- Skip Intro Button -->
+        <a href="home.html" class="skip-btn" id="skipBtn">Skip Intro →</a>
+    </div>
+
+    <!-- JavaScript: Countdown Timer and Skip functionality -->
+    <script>
+        /* Countdown timer - starts at 4 seconds and counts down */
+        let timeLeft = 4;
+        const countdownEl = document.getElementById('countdown');
+
+        /* Update countdown every second */
+        const countdownInterval = setInterval(function() {
+            timeLeft--;
+            if (timeLeft >= 0) {
+                countdownEl.textContent = timeLeft;
+            }
+            /* When countdown reaches 0, clear interval */
+            if (timeLeft <= 0) {
+                clearInterval(countdownInterval);
+            }
+        }, 1000);
+
+        /* Skip button - cancels the auto-redirect and navigates immediately */
+        document.getElementById('skipBtn').addEventListener('click', function(e) {
+            /* Cancel the auto-redirect interval */
+            clearInterval(countdownInterval);
+            /* Navigate to home page */
+            window.location.href = 'home.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--
+    Page Editor Report - Student 3 (James Chen)
+    ClimAct: Climate Action Website | SDG 13
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page Editor Report for Student 3 - James Chen. Describes contributions to the ClimAct website.">
+    <title>ClimAct | Page Editor - James Chen (ST3)</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .editor-hero { text-align: center; padding: 2rem 1.5rem; background: linear-gradient(135deg, #FF9800, #FFB74D); border-radius: var(--radius-xl); margin-bottom: var(--space-2xl); color: #fff; }
+        .editor-hero h1 { color: #fff; }
+        .editor-hero p { color: rgba(255,255,255,0.9); }
+        .editor-nav { background: var(--surface); border-radius: var(--radius-md); padding: 1.2rem; margin-bottom: var(--space-xl); box-shadow: var(--shadow-sm); }
+        .editor-nav ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .editor-nav ul li a { font-size: 0.85rem; color: var(--primary); padding: 0.4rem 0.8rem; display: block; border-radius: var(--radius-sm); transition: background 0.2s; border: 1px solid var(--primary-light); }
+        .editor-nav ul li a:hover { background: #e8f5e9; }
+        .page-report { background: var(--surface); border-radius: var(--radius-lg); padding: 2rem; margin-bottom: var(--space-xl); box-shadow: var(--shadow-md); border-left: 4px solid #4CAF50; }
+        .page-report h2 { margin-bottom: 0.8rem; }
+        .page-report h3 { font-size: 1rem; margin-top: 1rem; margin-bottom: 0.5rem; color: var(--primary-dark); }
+        .page-report p { font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .page-link { display: inline-block; margin-top: 0.5rem; padding: 0.4rem 1rem; background: #4CAF50; color: #fff; border-radius: var(--radius-sm); font-size: 0.85rem; text-decoration: none; }
+        .page-link:hover { background: #388E3C; color: #fff; }
+    </style>
+</head>
+<body id="top">
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <svg width="45" height="45" viewBox="0 0 45 45" aria-label="ClimAct Logo"><circle cx="22.5" cy="22.5" r="22" fill="#FF9800"/><text x="22.5" y="28" text-anchor="middle" fill="#1B5E20" font-size="20" font-weight="bold">🌍</text></svg>
+                <div><p class="site-title">ClimAct</p><p class="site-tagline">SDG 13 · Climate Action</p></div>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle navigation menu" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
+            <nav><ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="ais.html">Action Simulator</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="profile.html">User Profile</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="sitemap.html">Sitemap</a></li>
+            </ul></nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="editor-hero">
+                <h1>James Chen's Editor Page</h1>
+                <p>Student 3 — Feedback &amp; Team Page Lead</p>
+            </section>
+
+            <nav class="editor-nav" aria-label="Internal page links">
+                <ul>
+                    <li><a href="#feedback">Feedback Page</a></li>
+                    <li><a href="#team">Team Page</a></li>
+                    <li><a href="#content">Content Page</a></li>
+                    <li><a href="#editor">Editor Page</a></li>
+                </ul>
+            </nav>
+
+            <div class="page-report" id="feedback">
+                <h2>Feedback &amp; Programme Directory (feedback.html)</h2>
+                <h3>Description</h3>
+                <p>The Feedback page provides a comprehensive programme directory, ratings and reviews from past participants, and an interactive feedback form. It serves as a central hub for community engagement and programme discovery.</p>
+                <h3>Technical Details</h3>
+                <p><strong>Scrollable Programme Directory:</strong> A CSS-styled scrollable container holds four programme cards in a responsive grid. The section uses overflow-y: auto with custom scrollbar styling. Each card features an icon, heading, description, and call-to-action button.</p>
+                <p><strong>Ratings &amp; Reviews:</strong> Displays an overall rating (8.6/10) with 127 total reviews, followed by individual review cards showing snippet text, reviewer name, date, and numerical rating. The layout uses CSS Grid with responsive columns.</p>
+                <p><strong>JavaScript Form Validation:</strong> The feedback form uses client-side JavaScript validation (no HTML5 validation attributes relied upon alone). Required fields (name, email, message) are validated on submit. Invalid fields receive CSS error styling with descriptive error messages.</p>
+                <p><strong>Character Counter:</strong> A real-time character counter tracks the remaining characters (max 500) in the message textarea. The counter changes colour from grey to orange (50 remaining) to red (20 remaining) as the limit approaches.</p>
+                <p><strong>Form Input Types:</strong> The form includes text, email, tel, textarea, select (single and multiple), datalist, date, and datetime-local input types, fulfilling the specification requirement for varied form controls.</p>
+                <a href="feedback.html" class="page-link">View Feedback Page →</a>
+            </div>
+
+            <div class="page-report" id="team">
+                <h2>Team Page (team.html)</h2>
+                <h3>Description</h3>
+                <p>The Team page introduces all four team members with interactive hover-triggered cards. Each card displays a thumbnail photograph, name, role, and an expandable details panel that reveals the full name, specific contributions, and a description of their work.</p>
+                <h3>Technical Details</h3>
+                <p><strong>CSS Hover Effects:</strong> Thumbnails implement multiple CSS hover effects: image scaling (transform: scale), opacity reduction (opacity: 0.85), card elevation (translateY), enhanced box shadow, and role badge animation. All transitions use smooth timing functions (0.3s-0.5s ease).</p>
+                <p><strong>Expandable Details:</strong> The member-details panel uses max-height transition from 0 to 300px, triggered by :hover and :focus-within pseudo-classes. This creates a smooth slide-down animation that reveals contributor information without JavaScript.</p>
+                <p><strong>Keyboard Accessibility:</strong> Each team member card has tabindex="0" allowing keyboard navigation. The :focus-within pseudo-class ensures the expandable details are triggered by keyboard focus as well as mouse hover, meeting accessibility requirements.</p>
+                <a href="team.html" class="page-link">View Team Page →</a>
+            </div>
+
+            <div class="page-report" id="content">
+                <h2>Content Page (content_ST3.html)</h2>
+                <h3>Description</h3>
+                <p>The content page covers Sustainable Food and Agriculture, with sections on food's carbon footprint, plant-based diets, local and seasonal eating, food waste reduction, and practical tips for students. Each section includes relevant imagery and detailed informational content.</p>
+                <a href="content_ST3.html" class="page-link">View Content Page →</a>
+            </div>
+
+            <div class="page-report" id="editor">
+                <h2>Editor Page (pageEditor_ST3.html)</h2>
+                <h3>Description</h3>
+                <p>This page documents all contributions by Student 3 (James Chen), including the Feedback page, Team page, and Content page.</p>
+                <a href="validation_ST3.html" class="page-link">View Validation Report →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section"><h4>ClimAct</h4><p>SDG 13: Climate Action</p></div>
+                <div class="footer-section"><h4>Links</h4><ul class="footer-links"><li><a href="home.html">Home</a></li><li><a href="feedback.html">Feedback</a></li><li><a href="team.html">Team</a></li></ul></div>
+                <div class="footer-section"><h4>Editors</h4><ul class="footer-links"><li><a href="pageEditor_ST1.html">Editor ST1</a></li><li><a href="pageEditor_ST2.html">Editor ST2</a></li><li><a href="pageEditor_ST3.html">Editor ST3</a></li><li><a href="pageEditor_ST4.html">Editor ST4</a></li></ul></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 ClimAct | University of Westminster</p></div>
+        </div>
+    </footer>
+</body>
+</html>

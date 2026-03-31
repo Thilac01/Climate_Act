@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<!--
+    Content Page - Student 1 (Alex Johnson)
+    Topic: Renewable Energy Solutions
+    ClimAct: Climate Action Website | SDG 13
+    Description: Long-form content page with multiple sections,
+    internal navigation links, anchor-based section jumping,
+    images, and a fixed "Go to Top" button.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Renewable Energy Solutions - Exploring solar, wind, and hydro power for a sustainable future.">
+    <title>ClimAct | Renewable Energy</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ---- CONTENT PAGE EMBEDDED CSS ---- */
+        /* Internal navigation sidebar */
+        .content-nav {
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            padding: 1.2rem;
+            margin-bottom: var(--space-xl);
+            box-shadow: var(--shadow-sm);
+        }
+        .content-nav h3 { font-size: 1rem; margin-bottom: 0.8rem; }
+        .content-nav ul { list-style: none; padding: 0; }
+        .content-nav ul li { margin-bottom: 0.3rem; }
+        .content-nav ul li a {
+            font-size: 0.85rem;
+            color: var(--primary);
+            padding: 0.3rem 0.5rem;
+            display: block;
+            border-radius: var(--radius-sm);
+            transition: background 0.2s;
+        }
+        .content-nav ul li a:hover {
+            background: #e8f5e9;
+        }
+
+        .content-section { margin-bottom: var(--space-2xl); }
+        .content-section img {
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            margin: var(--space-md) 0;
+        }
+
+        /* Go to top button */
+        .go-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            text-decoration: none;
+            box-shadow: var(--shadow-lg);
+            z-index: 500;
+            transition: transform 0.3s ease;
+        }
+        .go-top:hover {
+            transform: translateY(-3px);
+            color: #fff;
+        }
+    </style>
+</head>
+<body id="top">
+    <!-- ====== HEADER ====== -->
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <svg width="45" height="45" viewBox="0 0 45 45" aria-label="ClimAct Logo"><circle cx="22.5" cy="22.5" r="22" fill="#FF9800"/><text x="22.5" y="28" text-anchor="middle" fill="#1B5E20" font-size="20" font-weight="bold">🌍</text></svg>
+                <div><p class="site-title">ClimAct</p><p class="site-tagline">SDG 13 · Climate Action</p></div>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle navigation menu" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
+            <nav><ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="ais.html">Action Simulator</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="profile.html">User Profile</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="sitemap.html">Sitemap</a></li>
+            </ul></nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Renewable Energy Solutions</h1>
+            <p>How transitioning to clean energy sources can combat climate change and create a sustainable future for all.</p>
+
+            <!-- Internal Navigation -->
+            <nav class="content-nav" aria-label="Page sections">
+                <h3>📖 On This Page</h3>
+                <ul>
+                    <li><a href="#solar">Solar Energy</a></li>
+                    <li><a href="#wind">Wind Power</a></li>
+                    <li><a href="#hydro">Hydroelectric Energy</a></li>
+                    <li><a href="#benefits">Benefits of Renewables</a></li>
+                    <li><a href="#student-actions">What Students Can Do</a></li>
+                </ul>
+            </nav>
+
+            <!-- Section 1: Solar Energy -->
+            <section id="solar" class="content-section">
+                <h2>☀️ Solar Energy</h2>
+                <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80" alt="Rows of solar panels under a clear blue sky generating clean electricity" style="width:100%; max-height:400px; object-fit:cover;">
+                <p>Solar energy harnesses the power of sunlight to generate electricity through photovoltaic (PV) panels. It is currently the fastest-growing energy source globally, with installed capacity exceeding 1,000 gigawatts worldwide. The cost of solar panels has fallen by over 89% since 2010, making it the cheapest form of new electricity generation in many countries.</p>
+                <p>Residential solar installations allow homeowners to generate their own electricity, reduce energy bills, and even sell surplus energy back to the grid. Solar farms, ranging from small community projects to vast desert installations, now power millions of homes and businesses. In the UK, solar energy has grown from virtually nothing to contributing over 4% of the national electricity supply.</p>
+                <h3>How Solar Panels Work</h3>
+                <p>Solar PV panels contain cells made of semiconducting material, usually silicon. When photons from sunlight strike these cells, they knock electrons loose, creating a flow of electricity. This direct current (DC) is then converted to alternating current (AC) by an inverter for use in homes and businesses. Modern panels can achieve efficiency rates of 20-25%, with research pushing towards 40% using advanced materials.</p>
+            </section>
+
+            <!-- Section 2: Wind Power -->
+            <section id="wind" class="content-section">
+                <h2>💨 Wind Power</h2>
+                <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&q=80" alt="Wind turbines spinning in an open field generating renewable electricity" style="width:100%; max-height:400px; object-fit:cover;">
+                <p>Wind energy uses the kinetic energy of moving air to spin turbine blades, which drive generators to produce electricity. Modern wind turbines can reach heights of over 200 metres, with blades spanning more than 100 metres. A single large turbine can generate enough electricity to power over 1,500 homes.</p>
+                <p>Offshore wind farms, located in seas and oceans, benefit from stronger and more consistent winds. The UK is the world leader in offshore wind, with dozens of operational wind farms across the North Sea, Irish Sea, and English Channel. The industry supports over 30,000 jobs and continues to grow rapidly as costs decline and technology improves.</p>
+                <h3>Onshore vs Offshore Wind</h3>
+                <p>Onshore wind farms are less expensive to build and maintain but face challenges related to land use, visual impact, and noise. Offshore farms, while costlier, generate more electricity per turbine due to higher and more consistent wind speeds. Both forms play essential roles in a balanced, diverse renewable energy mix.</p>
+            </section>
+
+            <!-- Section 3: Hydroelectric Energy -->
+            <section id="hydro" class="content-section">
+                <h2>💧 Hydroelectric Energy</h2>
+                <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=800&q=80" alt="A flowing river through a forested landscape representing hydroelectric potential" style="width:100%; max-height:400px; object-fit:cover;">
+                <p>Hydroelectric power generates electricity by channelling the force of flowing or falling water through turbines. It is one of the oldest and most established forms of renewable energy, providing approximately 16% of global electricity. Large-scale dams, such as the Three Gorges Dam in China, can generate enormous amounts of power — enough to supply entire cities.</p>
+                <p>Small-scale hydroelectric installations, often called micro-hydro, can provide clean energy to rural and remote communities without the environmental impact of large dams. Run-of-river systems, which do not require dams, are a lower-impact alternative that can generate reliable power while preserving natural river ecosystems.</p>
+            </section>
+
+            <!-- Section 4: Benefits -->
+            <section id="benefits" class="content-section">
+                <h2>✅ Benefits of Renewable Energy</h2>
+                <img src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?w=800&q=80" alt="Beautiful green landscape representing the environmental benefits of clean energy" style="width:100%; max-height:400px; object-fit:cover;">
+                <p>Transitioning to renewable energy sources offers numerous benefits that extend well beyond reducing greenhouse gas emissions:</p>
+                <ul>
+                    <li><strong>Climate protection:</strong> Renewables produce little to no direct carbon dioxide emissions during operation, directly addressing the root cause of climate change.</li>
+                    <li><strong>Air quality improvement:</strong> Unlike fossil fuels, clean energy sources do not produce harmful pollutants such as particulate matter, nitrogen oxides, or sulphur dioxide.</li>
+                    <li><strong>Job creation:</strong> The renewable energy sector is a major employer, with new opportunities in manufacturing, installation, maintenance, research, and policy.</li>
+                    <li><strong>Energy independence:</strong> Countries that invest in domestic renewable energy reduce their reliance on imported fossil fuels, improving national security.</li>
+                    <li><strong>Cost savings:</strong> Once installed, solar and wind systems have minimal operating costs, providing affordable, long-term energy.</li>
+                </ul>
+            </section>
+
+            <!-- Section 5: Student Actions -->
+            <section id="student-actions" class="content-section">
+                <h2>🎓 What Students Can Do</h2>
+                <p>As students, there are many practical steps you can take to support the renewable energy transition and promote climate action:</p>
+                <ul>
+                    <li><strong>Advocate for campus sustainability:</strong> Push for solar panels on university buildings, improved energy efficiency, and divestment from fossil fuels.</li>
+                    <li><strong>Choose green energy providers:</strong> When living independently, opt for electricity tariffs that use 100% renewable sources.</li>
+                    <li><strong>Reduce energy waste:</strong> Turn off lights, unplug devices, and use energy-efficient appliances to lower your personal demand.</li>
+                    <li><strong>Learn and share:</strong> Take courses on sustainability, attend lectures, and share knowledge with peers to build awareness.</li>
+                    <li><strong>Support innovation:</strong> Engage with student research projects, innovation competitions, and sustainability societies.</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <!-- Go to Top Button (fixed position, always visible) -->
+    <a href="#top" class="go-top" aria-label="Go to top of page">↑</a>
+
+    <!-- ====== FOOTER ====== -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section"><h4>ClimAct</h4><p>SDG 13: Climate Action</p></div>
+                <div class="footer-section"><h4>Quick Links</h4><ul class="footer-links"><li><a href="home.html">Home</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="feedback.html">Feedback</a></li></ul></div>
+                <div class="footer-section"><h4>More</h4><ul class="footer-links"><li><a href="team.html">Team</a></li><li><a href="sitemap.html">Sitemap</a></li></ul></div>
+                <div class="footer-section"><h4>Page Info</h4><ul class="footer-links"><li><a href="pageEditor_ST1.html" target="_blank">Page Editor (Alex Johnson)</a></li><li><a href="validation_ST1.html" target="_blank">Validation</a></li></ul><p style="margin-top:0.5rem;font-size:0.8rem;">Student 1: Alex Johnson</p></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 ClimAct | University of Westminster</p></div>
+        </div>
+    </footer>
+</body>
+</html>
